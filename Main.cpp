@@ -29,10 +29,12 @@ int main() {
     string FilePath = "khogame.txt";
     string FilePath_user = "User_is.txt";
     QLK db_Game(FilePath);
-    // db_Game.Show();
+
     ListUser db_User(FilePath_user);
+
     Admin Admin;
-    // db_User.Show_ListUser(db_Game);
+    // db_Game.Show_QLK();
+    db_User.Show_ListUser(db_Game);
     // return 0;
     cout << "Chao mung" << endl;
     cout << "Ban muon lam gi" << endl;
@@ -60,14 +62,17 @@ int main() {
         }
         User Object_user = db_User.Return_User(tk);
         Object_user.aBalance(120);
-        Object_user.Show_User(db_Game);
-        // // Object_user.Show_User();
-        // Object_user.Buy("Csgo");
-        // Object_user.Buy("HollowKnight");
-        // Object_user.Buy("HollowKnight");
-        // Object_user.Buy("HollowKnight");
-        // Object_user.Buy("HollowKnight");
+        string SearchN;
+        cin>>SearchN;
+        db_Game.Search_and_Show(SearchN);
         // Object_user.Show_User(db_Game);
+        // // Object_user.Show_User();
+        Object_user.Buy("Csgo");
+        // Object_user.Buy("HollowKnight");
+        // Object_user.Buy("HollowKnight");
+        // Object_user.Buy("HollowKnight");
+        // Object_user.Buy("HollowKnight");
+        Object_user.Show_User(db_Game);
     } else if (choose == 2) {
         while (true) {
             cout << "Nhap tk: ";
@@ -96,7 +101,6 @@ int main() {
             cout << "Nhap mk: ";
             cin >> mk;
             db_User.Sign_up(tk, mk, FilePath_user);
-            db_User.Show_ListUser(db_Game);
-
     }
+    db_User.Show_ListUser(db_Game);
 }

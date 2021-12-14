@@ -118,7 +118,7 @@ void QLK::Sort(string c) {
         }
     }
 }
-void QLK::Show() {
+void QLK::Show_QLK() {
     for (int i = 0; i < this->len; i++) {
         (*(this->arr + i)).Show();
     }
@@ -167,4 +167,30 @@ Game QLK::Return_object(int idx) {
     Game object;
     object = *(this->arr + idx);
     return object;
+}
+int Find_string(string s1, string s2){
+    int i,j;
+    int l1 = s1.length();
+    int l2 = s2.length();
+    for(i = 0; i <l2 - l1; i++){
+        for(j = 0; j < l1; j++){
+            if(s2[i + j] != s1[j]){
+                break;
+            }
+        }
+        if(j == l1){
+            return i;
+        }
+    }
+    return -1;
+}
+void QLK::Search_and_Show(string Game_id){
+    for(int i = 0; i < this->len; i++){
+        Game Temp_obj = *(this->arr + i); // 0 error
+        // Temp_obj.Show();
+        string Name_g = Temp_obj.getName();
+        if(Find_string(Game_id, Name_g) != -1){
+            Temp_obj.Show();
+        }
+    }
 }

@@ -18,7 +18,10 @@ public:
     User(string, string);
     User(string, string, int, long);
     ~User();
-    void sUser_library(string*);
+    // void CreateUser_library();
+    void sUser_library(string*, int);
+    // int gUser_library_len();
+    // string gUser_library();
     void sUser_library_len(int);
     void sAccount(string);
     string gAccount();
@@ -33,6 +36,7 @@ public:
     void Search(string, QLK &); // Search and show
     void Show_User(QLK &);
     void Show_User_Name();
+    
 };
 
 class ListUser {

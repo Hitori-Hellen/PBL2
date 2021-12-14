@@ -22,5 +22,6 @@ class QLK{
         void Update_data(Game, int);
         void Update_numberS(bool, int, int);
         Game Return_object(int);
-        void Show();
+        void Show_QLK();
+        void Search_and_Show(string);
 };
