@@ -3,9 +3,28 @@
 #include "User.h"
 #include <fstream>
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
-
+string GetPassword(int length = 12){
+    char c;
+    string password;
+    c=_getch();
+    while(c!=13){
+        if(c==8 && password != ""){
+             password.pop_back();
+             cout << '\b' << " " << '\b';
+             length++;
+        }
+        if(c!=8 && length!=0){
+            password +=c;
+            cout <<"*";
+            length--;
+        }
+        c=_getch();
+    }
+    return password;
+}
 int main() {
     string FilePath = "khogame.txt";
     string FilePath_user = "User_is.txt";
@@ -32,7 +51,7 @@ int main() {
             cin >> tk;
             cout << endl;
             cout << "Nhap mk: ";
-            cin >> mk;
+            mk = GetPassword();
             cout << endl;
             if (db_User.Sign_in(tk, mk) == 1) {
                 // User Object_user = db_User.Return_User(tk);
@@ -55,7 +74,7 @@ int main() {
             cin >> tk;
             cout << endl;
             cout << "Nhap mk: ";
-            cin >> mk;
+            mk = GetPassword();
             cout << endl;
             if (Admin.Login_admin(tk, mk)) {
                 // User Object_user = db_User.Return_User(tk);
