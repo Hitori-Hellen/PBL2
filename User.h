@@ -45,7 +45,7 @@ public:
     bool Check_account(string);
     bool Check_password(string);
     bool Sign_in(string, string);
-    void Sign_up(string, string);
+    void Sign_up(string, string, string);
     void Show_ListUser(QLK&);
     User Return_User(string);
     int Search_user(string);

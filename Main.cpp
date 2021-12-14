@@ -76,8 +76,8 @@ int main() {
             cout << endl;
             cout << "Nhap mk: ";
             cin >> mk;
-            db_User.Sign_up(tk, mk);
+            db_User.Sign_up(tk, mk, FilePath_user);
             db_User.Show_ListUser(db_Game);
-        
+
     }
 }

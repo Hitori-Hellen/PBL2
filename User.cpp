@@ -189,7 +189,7 @@ bool ListUser::Check_password(string Input) {
         return false;
     }
 }
-void ListUser::Sign_up(string Input_Account, string Input_Password) {
+void ListUser::Sign_up(string Input_Account, string Input_Password, string FilePath_user) {
     while(true){
         if (this->Check_account(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
@@ -208,6 +208,11 @@ void ListUser::Sign_up(string Input_Account, string Input_Password) {
             }
             *(this->List_User + this->List_user_len) = Person;
             this->List_user_len++;
+            ofstream userdb;
+            userdb.open(FilePath_user, ios::app);
+            userdb << endl;
+            userdb << Person.gAccount() << " " << Person.gPassword() << " " << Person.gAge() << " " << Person.gBalance() << " 0";
+            userdb.close();
             break;
         } else {
             cout << "Your account is used. Please use another name!!!" << endl;
