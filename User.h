@@ -27,9 +27,10 @@ public:
     void sAge(int);
     int gAge();
     void sBalance(long);
+    void aBalance(long);
     long gBalance();
     void Buy(string);
-    void Search(string, QLK &);
+    void Search(string, QLK &); // Search and show
     void Show_User(QLK &);
     void Show_User_Name();
 };
@@ -45,7 +46,8 @@ public:
     bool Check_password(string);
     bool Sign_in(string, string);
     void Sign_up(string, string);
-    void Show_ListUser();
+    void Show_ListUser(QLK&);
     User Return_User(string);
     int Search_user(string);
+    Game Return_User_Game(int);
 };

@@ -1,6 +1,7 @@
 #include "QLK.h"
 #include <fstream>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -145,9 +146,11 @@ void QLK::Delete(Game l, int idx) {
 void QLK::Update_data(Game l, int index) {
     *(this->arr + index) = l;
 }
-void QLK::Update_numberS(bool x, int y, int index) {
+void QLK::Update_numberS(bool x, int y = 0, int index = 0) {
     if (x == true) {
-        (*(this->arr + index)).setSoluong(y);
+        (*(this->arr + index)).setSoluong((*(this->arr + index)).getSoluong() - 1);
+    }else{
+        (*(this->arr + index)).setSoluong((*(this->arr + index)).getSoluong() + y);
     }
 }
 int QLK::Search(string inp) {

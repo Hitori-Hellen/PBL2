@@ -54,6 +54,9 @@ int User::gAge() {
 void User::sBalance(long User_Balance) {
     this->Balance = User_Balance;
 }
+void User::aBalance(long Add_money){
+    this->Balance += Add_money;
+}
 long User::gBalance() {
     return this->Balance;
 }
@@ -70,20 +73,20 @@ void User::Buy(string Game_ID) {
     *(this->User_library + this->User_library_len) = Game_ID;
     this->User_library_len++;
 }
-bool Find_Char(string Str, string inp) {
-    bool checkushimasu = false;
-    for (int i = 0; i < Str.length(); i++) {
-        if (inp[0] == Str[i]) {
-            checkushimasu = true;
-            break;
-        }
-    }
-    if (checkushimasu == true) {
-        return true;
-    } else {
-        return false;
-    }
-}
+// bool Find_Char(string Str, string inp) {
+//     bool checkushimasu = false;
+//     for (int i = 0; i < Str.length(); i++) {
+//         if (inp == Str[i]) {
+//             checkushimasu = true;
+//             break;
+//         }
+//     }
+//     if (checkushimasu == true) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
 // void User::Search(string Game_ID, QLK& DB){
 //     int Game_index = DB.Search(Game_ID);
 //     for(int i = 0; i < DB.Length(); i++){
@@ -93,16 +96,17 @@ bool Find_Char(string Str, string inp) {
 //     }
 // }
 void User::Show_User(QLK &DB) {
-    cout << this->Age << " " << this->Balance << endl;
+    cout <<"Your Account: "<< this->Account <<" "<<"Your Age: "<< this->Age << " " <<"Your Balance: "<< this->Balance << endl;
+    cout<<"Your library Game: " << endl;
     for (int i = 0; i < this->User_library_len; i++) {
         int Game_index = DB.Search(*(this->User_library + i));
         Game obj_temp = DB.Return_object(Game_index);
         obj_temp.Show();
     }
 }
-void User::Show_User_Name() {
-    cout << this->Account << " " << this->Password << endl;
-}
+// void User::Show_User_Name() {
+//     cout << this->Account << " " << this->Password << endl;
+// }
 
 ListUser::ListUser(string FilePath_user) {
     int number_of_lines = 0;
@@ -139,6 +143,7 @@ ListUser::ListUser(string FilePath_user) {
         User_Temp_obj.sBalance(Var_User_Balance);
         User_Temp_obj.sUser_library_len(Var_User_library_len);
         User_Temp_obj.sUser_library(arr);
+        cout<<Var_User_Account<<endl;
         *(this->List_User + this->List_user_len) = User_Temp_obj;
         this->List_user_len++;
     }
@@ -185,8 +190,8 @@ bool ListUser::Check_password(string Input) {
     }
 }
 void ListUser::Sign_up(string Input_Account, string Input_Password) {
-    if (this->Check_account(Input_Account) == false) {
-        if (this->Check_password(Input_Password) == false) {
+    while(true){
+        if (this->Check_account(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
             cout << "Please enter your age: ";
             int Input_Age;
@@ -203,17 +208,16 @@ void ListUser::Sign_up(string Input_Account, string Input_Password) {
             }
             *(this->List_User + this->List_user_len) = Person;
             this->List_user_len++;
+            break;
         } else {
-            cout << "Your Password is used. Please use another one!!!" << endl;
+            cout << "Your account is used. Please use another name!!!" << endl;
         }
-    } else {
-        cout << "Your account is used. Please use another name!!!" << endl;
     }
 }
-void ListUser::Show_ListUser() {
+void ListUser::Show_ListUser(QLK &DB) {
     cout << this->List_user_len << endl;
     for (int i = 0; i < this->List_user_len; i++) {
-        (*(this->List_User + i)).Show_User_Name();
+        (*(this->List_User + i)).Show_User(DB);
     }
 }
 int ListUser::Search_user(string User_name) {
