@@ -102,12 +102,6 @@ void User::showUser(QLK &DB) {
         obj_temp.show();
     }
 }
-// void User::showUserName() {
-//     cout << this->Account << " " << this->Password << endl;
-// }
-string User::showUserLibrary() {
-    return *(this->User_library);
-}
 ListUser::ListUser(string FilePath_user) {
     int number_of_lines = 0;
     ifstream in;
@@ -157,7 +151,7 @@ ListUser::ListUser(string FilePath_user) {
 ListUser::~ListUser() {
     delete[] this->List_User;
 }
-bool ListUser::Sign_in(string Input_Account, string Input_Password) {
+bool ListUser::signIn(string Input_Account, string Input_Password) {
     bool inp = false;
     for (int i = 0; i < this->List_user_len; i++) {
         if ((this->List_User + i)->getAccount() == Input_Account && (this->List_User + i)->getPassword() == Input_Password) {
@@ -171,7 +165,7 @@ bool ListUser::Sign_in(string Input_Account, string Input_Password) {
         return false;
     }
 }
-bool ListUser::Check_account(string Input) {
+bool ListUser::checkAccount(string Input) {
     bool inp = false;
     for (int i = 0; i < this->List_user_len; i++) {
         if ((this->List_User + i)->getAccount() == Input) {
@@ -184,22 +178,10 @@ bool ListUser::Check_account(string Input) {
         return false;
     }
 }
-bool ListUser::Check_password(string Input) {
-    bool inp = false;
-    for (int i = 0; i < this->List_user_len; i++) {
-        if ((this->List_User + i)->getPassword() == Input) {
-            inp = true;
-        }
-    }
-    if (inp == true) {
-        return inp;
-    } else {
-        return false;
-    }
-}
-void ListUser::Sign_up(string Input_Account, string Input_Password, string FilePath_user) {
+
+void ListUser::signUp(string Input_Account, string Input_Password, string FilePath_user) {
     while (true) {
-        if (this->Check_account(Input_Account) == false) {
+        if (this->checkAccount(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
             cout << "Please enter your age: ";
             int Input_Age;
@@ -229,13 +211,13 @@ void ListUser::Sign_up(string Input_Account, string Input_Password, string FileP
         }
     }
 }
-void ListUser::Show_ListUser(QLK &DB) {
+void ListUser::showListUser(QLK &DB) {
     cout << this->List_user_len << endl;
     for (int i = 0; i < this->List_user_len; i++) {
         (*(this->List_User + i)).showUser(DB);
     }
 }
-int ListUser::Search_user(string User_name) {
+int ListUser::searchUser(string User_name) {
     int base = -1;
     for (int i = 0; i < this->List_user_len; i++) {
         if ((this->List_User + i)->getAccount() == User_name) {
@@ -245,8 +227,8 @@ int ListUser::Search_user(string User_name) {
     }
     return base;
 }
-User ListUser::Return_User(string User_Name) {
-    int Index_User = Search_user(User_Name);
+User ListUser::returnUser(string User_Name) {
+    int Index_User = searchUser(User_Name);
     User Temp_User;
     Temp_User = *(this->List_User + Index_User);
     return Temp_User;

@@ -27,7 +27,7 @@ string GetPassword(int length = 12) {
 }
 int main() {
     /*
-        xu li Delete(QLK), buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
+        xu li deleteGameDB(QLK), buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
         Ham Show_limit_and_search(), doi mat khau CPassword_user()
         Hoan thien Menu main - Sua logic
     */
@@ -38,7 +38,7 @@ int main() {
     Admin Admin;
     User User;
     int choose;
-    string tk, mk;
+    string username, password;
     string choice;
     string name;
     bool cb = true;
@@ -58,17 +58,17 @@ int main() {
                 while (true) {
                     cout << "Countinue? : ";
                     cin >> choice;
-                    if (choice == "No" || choice == "N" || choice == "n") {
+                    if (choice == "n" || choice == "N" || choice == "no" || choice == "No" || choice == "NO") {
                         system("cls");
                         break;
                     }
                     cout << "Sign in!" << endl;
                     cout << "Account :";
-                    cin >> tk;
+                    cin >> username;
                     cout << "Password :";
-                    mk = GetPassword();
+                    password = GetPassword();
                     cout << endl;
-                    if (Admin.loginAdmin(tk, mk) == true) {
+                    if (Admin.loginAdmin(username, password) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
@@ -78,7 +78,7 @@ int main() {
                     }
                 }
                 // !
-                if (Admin.loginAdmin(tk, mk) == false) {
+                if (Admin.loginAdmin(username, password) == false) {
                     break;
                 }
                 system("cls");
@@ -128,7 +128,7 @@ int main() {
                         cout << "Enter Rating: ";
                         cin >> _Rating_game;
                         Game Obj_g(_Name_game, _Genre_game, _Developer_game, _ReleaseYear_game, _Price_game, _NumberS_game, _Rating_game);
-                        db_Game.Add(Obj_g, FilePath);
+                        db_Game.addGameDB(Obj_g, FilePath);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -167,12 +167,12 @@ int main() {
                         cin >> _Name_game;
                         int idx_g = db_Game.search(_Name_game);
                         Game obj_g = db_Game.Return_object(idx_g);
-                        db_Game.Delete(obj_g, idx_g);
+                        db_Game.deleteGameDB(obj_g, idx_g);
                         system("pause");
                         char x = getchar();
                         system("cls");
                     } else if (choose == 5) {
-                        db_User.Show_ListUser(db_Game);
+                        db_User.showListUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -187,30 +187,30 @@ int main() {
                 while (true) {
                     cout << "Sign in!" << endl;
                     cout << "Account :";
-                    cin >> tk;
+                    cin >> username;
                     cout << "Password :";
-                    mk = GetPassword();
+                    password = GetPassword();
                     cout << endl;
-                    if (db_User.Sign_in(tk, mk) == true) {
+                    if (db_User.signIn(username, password) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
                         char x = getchar();
                         system("cls");
                         break;
-                    } else if (db_User.Sign_in(tk, mk) == false) {
+                    } else if (db_User.signIn(username, password) == false) {
                         cout << "Countinue? : ";
                         cin >> choice;
-                        if (choice == "No" || choice == "N" || choice == "n") {
+                        if (choice == "n" || choice == "N" || choice == "no" || choice == "No" || choice == "NO") {
                             system("cls");
                             break;
                         }
                     }
                 }
-                if (db_User.Sign_in(tk, mk) == false) {
+                if (db_User.signIn(username, password) == false) {
                     break;
                 }
-                User = db_User.Return_User(tk);
+                User = db_User.returnUser(username);
                 while (true) {
                     system("cls");
                     cout << "Welcome " << User.getAccount() << endl;
@@ -256,12 +256,12 @@ int main() {
                 break;
             }
         } else if (choose == 3) {
-            cout << "Nhap tk: ";
-            cin >> tk;
+            cout << "Nhap username: ";
+            cin >> username;
             cout << endl;
-            cout << "Nhap mk: ";
-            cin >> mk;
-            db_User.Sign_up(tk, mk, FilePath_user);
+            cout << "Nhap password: ";
+            cin >> password;
+            db_User.signUp(username, password, FilePath_user);
         } else if (choose == 4) {
             cout << "See you soon";
             break;

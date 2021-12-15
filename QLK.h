@@ -15,13 +15,12 @@ public:
     ~QLK();
     void Length(int);
     int Length();
-    void Add(Game, string);
+    void addGameDB(Game, string);
     int search(string);
-    void Delete(Game, int);
+    void deleteGameDB(Game, int);
     void Sort(string);
     void Update_data(Game, int);
     void Update_numberS(bool, int, int);
     Game Return_object(int);
     void Show_QLK();
-    void Search_and_Show(string);
 };

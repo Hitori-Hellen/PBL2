@@ -19,22 +19,20 @@ public:
     User(string, string, int, long);
     ~User();
     void setUser_library(string *, int);
-    int getUser_library_len();
     void setUser_library_len(int);
     void setAccount(string);
-    string getAccount();
     void setPassword(string);
-    string getPassword();
     void setAge(int);
-    int getAge();
     void setBalance(long);
     void addBalance(long);
+    int getUser_library_len();
+    string getAccount();
+    string getPassword();
+    int getAge();
     long getBalance();
     void buy(string);
     void search(string, QLK &); // Search and show
     void showUser(QLK &);
-    void showUserName();
-    string showUserLibrary();
 };
 
 class ListUser {
@@ -45,12 +43,10 @@ private:
 public:
     ListUser(string);
     ~ListUser();
-    bool Check_account(string);
-    bool Check_password(string);
-    bool Sign_in(string, string);
-    void Sign_up(string, string, string);
-    void Show_ListUser(QLK &);
-    User Return_User(string);
-    int Search_user(string);
-    Game Return_User_Game(int);
+    bool checkAccount(string);
+    bool signIn(string, string);
+    void signUp(string, string, string);
+    void showListUser(QLK &);
+    User returnUser(string);
+    int searchUser(string);
 };

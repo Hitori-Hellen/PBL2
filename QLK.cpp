@@ -53,7 +53,7 @@ void QLK::Length(int x) {
 int QLK::Length() {
     return this->len;
 }
-void QLK::Add(Game l, string FilePath) {
+void QLK::addGameDB(Game l, string FilePath) {
     if (this->len == 0) {
         this->arr = new Game[this->len + 1];
         *(this->arr + this->len) = l;
@@ -129,7 +129,7 @@ void QLK::Show_QLK() {
         (*(this->arr + i)).show();
     }
 }
-void QLK::Delete(Game l, int idx) {
+void QLK::deleteGameDB(Game l, int idx) {
     if (this->len == 1) {
         delete[] this->arr;
     } else {
@@ -189,14 +189,4 @@ int Find_string(string s1, string s2) {
         }
     }
     return -1;
-}
-void QLK::Search_and_Show(string Game_id) {
-    for (int i = 0; i < this->len; i++) {
-        Game Temp_obj = *(this->arr + i); // 0 error
-        // Temp_obj.show();
-        string Name_g = Temp_obj.getName();
-        if (Find_string(Game_id, Name_g) != -1) {
-            Temp_obj.show();
-        }
-    }
 }
