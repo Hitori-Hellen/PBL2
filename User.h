@@ -19,7 +19,7 @@ public:
     User(string, string, int, long);
     ~User();
     // void CreateUser_library();
-    void sUser_library(string*, int);
+    void sUser_library(string *, int);
     int gUser_library_len();
     // string gUser_library();
     void sUser_library_len(int);
@@ -51,7 +51,7 @@ public:
     bool Check_password(string);
     bool Sign_in(string, string);
     void Sign_up(string, string, string);
-    void Show_ListUser(QLK&);
+    void Show_ListUser(QLK &);
     User Return_User(string);
     int Search_user(string);
     Game Return_User_Game(int);

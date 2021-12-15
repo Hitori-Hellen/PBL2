@@ -3,13 +3,13 @@
 
 using namespace std;
 
-Admin::Admin(){
+Admin::Admin() {
     this->Account = "admin";
     this->Password = "hello";
 }
-bool Admin::Login_admin(string Admin_account, string Admin_password){
+bool Admin::Login_admin(string Admin_account, string Admin_password) {
     bool check = false;
-    if(this->Account == Admin_account && this->Password == Admin_password){
+    if (this->Account == Admin_account && this->Password == Admin_password) {
         check = true;
     }
     return check;

@@ -1,26 +1,22 @@
 #include "Admin.h"
 #include "QLK.h"
 #include "User.h"
+#include <conio.h>
 #include <fstream>
 #include <iostream>
-#include <conio.h>
 
 using namespace std;
-string GetPassword(int length = 12)
-{
+string GetPassword(int length = 12) {
     char c;
     string password;
     c = _getch();
-    while (c != 13)
-    {
-        if (c == 8 && password != "")
-        {
+    while (c != 13) {
+        if (c == 8 && password != "") {
             password.pop_back();
             cout << '\b' << " " << '\b';
             length++;
         }
-        if (c != 8 && length != 0)
-        {
+        if (c != 8 && length != 0) {
             password += c;
             cout << "*";
             length--;
@@ -29,15 +25,14 @@ string GetPassword(int length = 12)
     }
     return password;
 }
-int main()
-{
+int main() {
     /*
         xu li Delete(QLK), Buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
         Ham Show_limit_and_search(), doi mat khau CPassword_user()
         Hoan thien Menu main - Sua logic
     */
-    string FilePath = "khogame.txt";
-    string FilePath_user = "User_is.txt";
+    string FilePath = "GameDB.txt";
+    string FilePath_user = "UserDB.txt";
     QLK db_Game(FilePath);
     ListUser db_User(FilePath_user);
     Admin Admin;
@@ -48,8 +43,7 @@ int main()
     string choice;
     string name;
     bool cb = true;
-    while (true)
-    {
+    while (true) {
         cout << "Welcome" << endl;
         cout << "Who Are You" << endl;
         cout << "1.Admin" << endl;
@@ -60,16 +54,12 @@ int main()
         cout << "choose your choice: ";
         cin >> choose;
         system("cls");
-        if (choose == 1)
-        {
-            while (true)
-            {
-                while (true)
-                {
+        if (choose == 1) {
+            while (true) {
+                while (true) {
                     cout << "Countinue? : ";
                     cin >> choice;
-                    if (choice == "No" || choice == "N" || choice == "n")
-                    {
+                    if (choice == "No" || choice == "N" || choice == "n") {
                         system("cls");
                         break;
                     }
@@ -79,8 +69,7 @@ int main()
                     cout << "Password :";
                     mk = GetPassword();
                     cout << endl;
-                    if (Admin.Login_admin(tk, mk) == true)
-                    {
+                    if (Admin.Login_admin(tk, mk) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
@@ -90,13 +79,11 @@ int main()
                     }
                 }
                 // !
-                if (Admin.Login_admin(tk, mk) == false)
-                {
+                if (Admin.Login_admin(tk, mk) == false) {
                     break;
                 }
                 system("cls");
-                while (true)
-                {
+                while (true) {
                     cout << "Welcome Admin!" << endl;
                     cout << "What do you want to do:" << endl;
                     cout << "1. Show Game_database" << endl;
@@ -109,8 +96,7 @@ int main()
                     cout << "choose your choice: ";
                     cin >> choose;
                     system("cls");
-                    if (choose == 1)
-                    {
+                    if (choose == 1) {
                         cout << "Enter your sort type: ";
                         cin >> choice;
                         db_Game.Sort(choice);
@@ -119,9 +105,7 @@ int main()
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 2)
-                    {
+                    } else if (choose == 2) {
                         // INFIle
                         string _Name_game;
                         string _Genre_game;
@@ -149,9 +133,7 @@ int main()
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 3)
-                    {
+                    } else if (choose == 3) {
                         string _Name_game;
                         string _Genre_game;
                         string _Developer_game;
@@ -179,9 +161,7 @@ int main()
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 4)
-                    {
+                    } else if (choose == 4) {
                         // Delete File
                         string _Name_game;
                         cout << "Enter Name data you want to delete: ";
@@ -192,60 +172,46 @@ int main()
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 5)
-                    {
+                    } else if (choose == 5) {
                         db_User.Show_ListUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 6)
-                    {
+                    } else if (choose == 6) {
                         break;
                     }
                 }
             }
-        }
-        else if (choose == 2)
-        {
-            while (true)
-            {
-                while (true)
-                {
+        } else if (choose == 2) {
+            while (true) {
+                while (true) {
                     cout << "Sign in!" << endl;
                     cout << "Account :";
                     cin >> tk;
                     cout << "Password :";
                     mk = GetPassword();
                     cout << endl;
-                    if (db_User.Sign_in(tk, mk) == true)
-                    {
+                    if (db_User.Sign_in(tk, mk) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
                         char x = getchar();
                         system("cls");
                         break;
-                    }
-                    else if (db_User.Sign_in(tk, mk) == false)
-                    {
+                    } else if (db_User.Sign_in(tk, mk) == false) {
                         cout << "Countinue? : ";
                         cin >> choice;
-                        if (choice == "No" || choice == "N" || choice == "n")
-                        {
+                        if (choice == "No" || choice == "N" || choice == "n") {
                             system("cls");
                             break;
                         }
                     }
                 }
-                if (db_User.Sign_in(tk, mk) == false)
-                {
+                if (db_User.Sign_in(tk, mk) == false) {
                     break;
                 }
                 User = db_User.Return_User(tk);
-                while (true)
-                {
+                while (true) {
                     system("cls");
                     cout << "Welcome " << User.gAccount() << endl;
                     cout << "What do you want to do" << endl;
@@ -259,15 +225,12 @@ int main()
                     system("pause");
                     char x = getchar();
                     system("cls");
-                    if (choose == 1)
-                    {
+                    if (choose == 1) {
                         User.Show_User(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 2)
-                    {
+                    } else if (choose == 2) {
                         db_Game.Show_QLK();
                         // func
                         cout << "Enter Name of Game you want to buy: ";
@@ -277,41 +240,31 @@ int main()
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else if (choose == 3)
-                    {
+                    } else if (choose == 3) {
                         int Money;
                         cout << "Enter your Number: ";
                         cin >> Money;
-                        //password??
+                        // password??
                         User.aBalance(Money);
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
                 }
                 break;
             }
-        }
-        else if (choose == 3)
-        {
+        } else if (choose == 3) {
             cout << "Nhap tk: ";
             cin >> tk;
             cout << endl;
             cout << "Nhap mk: ";
             cin >> mk;
             db_User.Sign_up(tk, mk, FilePath_user);
-            break;
-        }
-        else if (choose == 4)
-        {
+        } else if (choose == 4) {
             cout << "See you soon";
             break;
         }
-        break;
     }
 }
