@@ -6,5 +6,5 @@ using namespace std;
 class Admin : public User {
 public:
     Admin();
-    bool Login_admin(string, string);
+    bool loginAdmin(string, string);
 };

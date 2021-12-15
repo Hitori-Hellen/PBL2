@@ -18,25 +18,23 @@ public:
     User(string, string);
     User(string, string, int, long);
     ~User();
-    // void CreateUser_library();
-    void sUser_library(string *, int);
-    int gUser_library_len();
-    // string gUser_library();
-    void sUser_library_len(int);
-    void sAccount(string);
-    string gAccount();
-    void sPassword(string);
-    string gPassword();
-    void sAge(int);
-    int gAge();
-    void sBalance(long);
-    void aBalance(long);
-    long gBalance();
-    void Buy(string);
-    void Search(string, QLK &); // Search and show
-    void Show_User(QLK &);
-    void Show_User_Name();
-    string Show_User_library();
+    void setUser_library(string *, int);
+    int getUser_library_len();
+    void setUser_library_len(int);
+    void setAccount(string);
+    string getAccount();
+    void setPassword(string);
+    string getPassword();
+    void setAge(int);
+    int getAge();
+    void setBalance(long);
+    void addBalance(long);
+    long getBalance();
+    void buy(string);
+    void search(string, QLK &); // Search and show
+    void showUser(QLK &);
+    void showUserName();
+    string showUserLibrary();
 };
 
 class ListUser {

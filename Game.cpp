@@ -25,7 +25,7 @@ void Game::setYear(int d) {
 void Game::setPrice(int e) {
     this->_Price = e;
 }
-void Game::setSoluong(int f) {
+void Game::setStock(int f) {
     this->_NumberS = f;
 }
 void Game::setRating(double g) {
@@ -46,12 +46,12 @@ int Game::getYear() {
 int Game::getPrice() {
     return this->_Price;
 }
-int Game::getSoluong() {
+int Game::getStock() {
     return this->_NumberS;
 }
 double Game::getRating() {
     return this->_Rating;
 }
-void Game::Show() {
+void Game::show() {
     cout << this->_Name << " " << this->_Genre << " " << this->_Developer << " " << this->_ReleaseYear << " " << this->_Price << " " << this->_NumberS << " " << this->_Rating << endl;
 }

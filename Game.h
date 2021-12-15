@@ -21,14 +21,14 @@ public:
     void setDev(string);
     void setYear(int);
     void setPrice(int);
-    void setSoluong(int);
+    void setStock(int);
     void setRating(double);
     string getName();
     string getGen();
     string getDev();
     int getYear();
     int getPrice();
-    int getSoluong();
+    int getStock();
     double getRating();
-    void Show();
+    void show();
 };

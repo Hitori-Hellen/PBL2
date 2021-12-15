@@ -27,7 +27,7 @@ string GetPassword(int length = 12) {
 }
 int main() {
     /*
-        xu li Delete(QLK), Buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
+        xu li Delete(QLK), buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
         Ham Show_limit_and_search(), doi mat khau CPassword_user()
         Hoan thien Menu main - Sua logic
     */
@@ -37,7 +37,6 @@ int main() {
     ListUser db_User(FilePath_user);
     Admin Admin;
     User User;
-
     int choose;
     string tk, mk;
     string choice;
@@ -51,7 +50,7 @@ int main() {
         cout << "3.New Guy!" << endl;
         cout << "4.Exit" << endl;
         cout << endl;
-        cout << "choose your choice: ";
+        cout << "Pick your poison: ";
         cin >> choose;
         system("cls");
         if (choose == 1) {
@@ -69,7 +68,7 @@ int main() {
                     cout << "Password :";
                     mk = GetPassword();
                     cout << endl;
-                    if (Admin.Login_admin(tk, mk) == true) {
+                    if (Admin.loginAdmin(tk, mk) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
@@ -79,21 +78,21 @@ int main() {
                     }
                 }
                 // !
-                if (Admin.Login_admin(tk, mk) == false) {
+                if (Admin.loginAdmin(tk, mk) == false) {
                     break;
                 }
                 system("cls");
                 while (true) {
                     cout << "Welcome Admin!" << endl;
                     cout << "What do you want to do:" << endl;
-                    cout << "1. Show Game_database" << endl;
+                    cout << "1. Show Game Database" << endl;
                     cout << "2. Add Game" << endl;
-                    cout << "3. Update new Game_data" << endl;
-                    cout << "4. Delete Game_data" << endl;
-                    cout << "5. Show List User" << endl;
+                    cout << "3. Update Game Info" << endl;
+                    cout << "4. Remove Game From Database" << endl;
+                    cout << "5. Show User List" << endl;
                     cout << "6. Back" << endl;
                     cout << endl;
-                    cout << "choose your choice: ";
+                    cout << "Pick your poison: ";
                     cin >> choose;
                     system("cls");
                     if (choose == 1) {
@@ -101,7 +100,7 @@ int main() {
                         cin >> choice;
                         db_Game.Sort(choice);
                         db_Game.Show_QLK();
-                        cout << "Press anykey to come back..";
+                        //cout << "Press anykey to come back..";
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -156,7 +155,7 @@ int main() {
                         cout << "Enter Rating: ";
                         cin >> _Rating_game;
                         Game Obj_g(_Name_game, _Genre_game, _Developer_game, _ReleaseYear_game, _Price_game, _NumberS_game, _Rating_game);
-                        int idx_g = db_Game.Search(_Name_game);
+                        int idx_g = db_Game.search(_Name_game);
                         db_Game.Update_data(Obj_g, idx_g);
                         system("pause");
                         char x = getchar();
@@ -164,9 +163,9 @@ int main() {
                     } else if (choose == 4) {
                         // Delete File
                         string _Name_game;
-                        cout << "Enter Name data you want to delete: ";
+                        cout << "Which game do you want to remove: ";
                         cin >> _Name_game;
-                        int idx_g = db_Game.Search(_Name_game);
+                        int idx_g = db_Game.search(_Name_game);
                         Game obj_g = db_Game.Return_object(idx_g);
                         db_Game.Delete(obj_g, idx_g);
                         system("pause");
@@ -181,6 +180,7 @@ int main() {
                         break;
                     }
                 }
+                break;
             }
         } else if (choose == 2) {
             while (true) {
@@ -213,7 +213,7 @@ int main() {
                 User = db_User.Return_User(tk);
                 while (true) {
                     system("cls");
-                    cout << "Welcome " << User.gAccount() << endl;
+                    cout << "Welcome " << User.getAccount() << endl;
                     cout << "What do you want to do" << endl;
                     cout << "1. Show your library" << endl;
                     cout << "2. Buy some Game" << endl;
@@ -226,7 +226,7 @@ int main() {
                     char x = getchar();
                     system("cls");
                     if (choose == 1) {
-                        User.Show_User(db_Game);
+                        User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -235,8 +235,8 @@ int main() {
                         // func
                         cout << "Enter Name of Game you want to buy: ";
                         cin >> name;
-                        User.Buy(name);
-                        User.Show_User(db_Game);
+                        User.buy(name);
+                        User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -245,11 +245,11 @@ int main() {
                         cout << "Enter your Number: ";
                         cin >> Money;
                         // password??
-                        User.aBalance(Money);
+                        User.addBalance(Money);
                         system("pause");
                         char x = getchar();
                         system("cls");
-                    } else {
+                    } else if (choose == 4) {
                         break;
                     }
                 }

@@ -16,7 +16,7 @@ public:
     void Length(int);
     int Length();
     void Add(Game, string);
-    int Search(string);
+    int search(string);
     void Delete(Game, int);
     void Sort(string);
     void Update_data(Game, int);

@@ -37,7 +37,7 @@ QLK::QLK(string FilePath) {
         object.setDev(_Developer_game);
         object.setYear(_ReleaseYear_game);
         object.setPrice(_Price_game);
-        object.setSoluong(_NumberS_game);
+        object.setStock(_NumberS_game);
         object.setRating(_Rating_game);
         *(arr + this->len) = object;
         this->len++;
@@ -72,7 +72,7 @@ void QLK::Add(Game l, string FilePath) {
     ofstream gamedb;
     gamedb.open(FilePath, ios::app);
     gamedb << endl;
-    gamedb << l.getName() << " " << l.getGen() << " " << l.getDev() << " " << l.getYear() << " " << l.getPrice() << " " << l.getSoluong() << " " << l.getRating();
+    gamedb << l.getName() << " " << l.getGen() << " " << l.getDev() << " " << l.getYear() << " " << l.getPrice() << " " << l.getStock() << " " << l.getRating();
     gamedb.close();
     this->len++;
 }
@@ -126,7 +126,7 @@ void QLK::Sort(string c) {
 }
 void QLK::Show_QLK() {
     for (int i = 0; i < this->len; i++) {
-        (*(this->arr + i)).Show();
+        (*(this->arr + i)).show();
     }
 }
 void QLK::Delete(Game l, int idx) {
@@ -154,12 +154,12 @@ void QLK::Update_data(Game l, int index) {
 }
 void QLK::Update_numberS(bool x, int y = 0, int index = 0) {
     if (x == true) {
-        (*(this->arr + index)).setSoluong((*(this->arr + index)).getSoluong() - 1);
+        (*(this->arr + index)).setStock((*(this->arr + index)).getStock() - 1);
     } else {
-        (*(this->arr + index)).setSoluong((*(this->arr + index)).getSoluong() + y);
+        (*(this->arr + index)).setStock((*(this->arr + index)).getStock() + y);
     }
 }
-int QLK::Search(string inp) {
+int QLK::search(string inp) {
     int base = -1;
     for (int i = 0; i < this->len; i++) {
         if ((this->arr + i)->getName() == inp) {
@@ -193,10 +193,10 @@ int Find_string(string s1, string s2) {
 void QLK::Search_and_Show(string Game_id) {
     for (int i = 0; i < this->len; i++) {
         Game Temp_obj = *(this->arr + i); // 0 error
-        // Temp_obj.Show();
+        // Temp_obj.show();
         string Name_g = Temp_obj.getName();
         if (Find_string(Game_id, Name_g) != -1) {
-            Temp_obj.Show();
+            Temp_obj.show();
         }
     }
 }
