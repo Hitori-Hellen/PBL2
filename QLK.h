@@ -15,7 +15,7 @@ class QLK{
         ~QLK();
         void Length(int);
         int Length();
-        void Add(Game);
+        void Add(Game, string);
         int Search(string);
         void Delete(Game, int);
         void Sort(string);

@@ -15,8 +15,7 @@ User::User(string User_Account, string User_Password)
     this->Age = 0;
     this->Balance = 0;
     this->User_library_len = 0;
-    this->User_library = new string[1];
-    *(this->User_library + 0) = "Empty";
+    this->User_library = nullptr;
 }
 User::User(string User_Account, string User_Password, int User_Age, long User_Balance)
 {
@@ -25,8 +24,7 @@ User::User(string User_Account, string User_Password, int User_Age, long User_Ba
     this->Age = User_Age;
     this->Balance = User_Balance;
     this->User_library_len = 0;
-    this->User_library = new string[1];
-    *(this->User_library + 0) = "Empty";
+    this->User_library = nullptr;
 }
 User::~User()
 {
@@ -43,9 +41,11 @@ void User::sUser_library(string arr[], int len_arr)
         *(this->User_library + i) = *(arr + i);
     }
 }
-/* int User::gUser_library_len(){
+int User::gUser_library_len()
+{
     return this->User_library_len;
 }
+/*
 string User::gUser_library(){
     return *(this->User_library + 0);
 } */
@@ -93,8 +93,9 @@ void User::Buy(string Game_ID)
 {
     if (this->User_library_len == 0)
     {
-        this->User_library = new string[this->User_library_len + 1];
-        *(this->User_library + this->User_library_len) = Game_ID;
+        this->User_library = new string[User_library_len + 1];
+        *(User_library + this->User_library_len) = Game_ID;
+        this->User_library_len++;
     }
     else
     {
@@ -118,7 +119,7 @@ void User::Show_User(QLK &DB)
     cout << "Your Account: " << this->Account << " "
          << "Your Age: " << this->Age << " "
          << "Your Balance: " << this->Balance << endl;
-    cout << "Your library Game: " << endl;
+    cout << "Your library Game: " << this->User_library_len << endl;
     for (int i = 0; i < this->User_library_len; i++)
     {
         int Game_index = DB.Search(*(this->User_library + i));
@@ -129,7 +130,10 @@ void User::Show_User(QLK &DB)
 // void User::Show_User_Name() {
 //     cout << this->Account << " " << this->Password << endl;
 // }
-
+string User::Show_User_library()
+{
+    return *(this->User_library);
+}
 ListUser::ListUser(string FilePath_user)
 {
     int number_of_lines = 0;
@@ -155,24 +159,37 @@ ListUser::ListUser(string FilePath_user)
     {
         istringstream iss(line1);
         iss >> Var_User_Account >> Var_User_Password >> Var_User_Age >> Var_User_Balance >> Var_User_library_len;
-        string *arr = new string[Var_User_library_len];
-        int i = 0;
-        while (iss >> Var_User_Game_Id)
+        if (Var_User_library_len == 0)
         {
-            *(arr + i) = Var_User_Game_Id;
-            i++;
+            User User_Temp_obj(Var_User_Account, Var_User_Password, Var_User_Age, Var_User_Balance);
+            *(List_User + this->List_user_len) = User_Temp_obj;
+            this->List_user_len++;
         }
-        User User_Temp_obj;
-        User_Temp_obj.sAccount(Var_User_Account);
-        User_Temp_obj.sPassword(Var_User_Password);
-        User_Temp_obj.sAge(Var_User_Age);
-        User_Temp_obj.sBalance(Var_User_Balance);
-        User_Temp_obj.sUser_library_len(Var_User_library_len);
-        User_Temp_obj.sUser_library(arr, i);
-        *(List_User + this->List_user_len) = User_Temp_obj;
-        this->List_user_len++;
+        else
+        {
+            int i = 0;
+            string *arr = new string[Var_User_library_len];
+            while (iss >> Var_User_Game_Id)
+            {
+                *(arr + i) = Var_User_Game_Id;
+                i++;
+            }
+            User User_Temp_obj;
+            User_Temp_obj.sAccount(Var_User_Account);
+            User_Temp_obj.sPassword(Var_User_Password);
+            User_Temp_obj.sAge(Var_User_Age);
+            User_Temp_obj.sBalance(Var_User_Balance);
+            User_Temp_obj.sUser_library_len(Var_User_library_len);
+            User_Temp_obj.sUser_library(arr, i);
+            *(List_User + this->List_user_len) = User_Temp_obj;
+            this->List_user_len++;
+        }
     }
     in.close();
+}
+ListUser::~ListUser()
+{
+    delete[] this->List_User;
 }
 bool ListUser::Sign_in(string Input_Account, string Input_Password)
 {
@@ -260,7 +277,8 @@ void ListUser::Sign_up(string Input_Account, string Input_Password, string FileP
             ofstream userdb;
             userdb.open(FilePath_user, ios::app);
             userdb << endl;
-            userdb << Person.gAccount() << " " << Person.gPassword() << " " << Person.gAge() << " " << Person.gBalance() <<"0";
+            userdb << Person.gAccount() << " " << Person.gPassword() << " " << Person.gAge() << " " << Person.gBalance() << " "
+                   << "0";
             userdb.close();
             break;
         }

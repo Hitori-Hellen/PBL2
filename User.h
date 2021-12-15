@@ -20,7 +20,7 @@ public:
     ~User();
     // void CreateUser_library();
     void sUser_library(string*, int);
-    // int gUser_library_len();
+    int gUser_library_len();
     // string gUser_library();
     void sUser_library_len(int);
     void sAccount(string);
@@ -36,7 +36,7 @@ public:
     void Search(string, QLK &); // Search and show
     void Show_User(QLK &);
     void Show_User_Name();
-    
+    string Show_User_library();
 };
 
 class ListUser {
@@ -46,6 +46,7 @@ private:
 
 public:
     ListUser(string);
+    ~ListUser();
     bool Check_account(string);
     bool Check_password(string);
     bool Sign_in(string, string);
