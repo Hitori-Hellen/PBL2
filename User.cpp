@@ -91,6 +91,27 @@ void User::buy(string Game_ID) {
         *(this->User_library + this->User_library_len) = Game_ID;
         this->User_library_len++;
     }
+    ofstream tempFile("temp.txt");
+    string line;
+    ifstream UserDBFile("UserDB.txt");
+    string usrname;
+    while(getline(UserDBFile, line)) {
+        istringstream iss(line);
+        iss >> usrname;
+        if (usrname == this->Account) {
+            tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+            for (int i = 0; i < this->User_library_len; i++) {
+                tempFile << " " << *(this->User_library + i);
+            }
+            tempFile << endl;
+        } else {
+            tempFile << line << endl;
+        }
+    }
+    tempFile.close();
+    UserDBFile.close();
+    remove("UserDB.txt");
+    rename("temp.txt", "UserDB.txt");
 }
 void User::showUser(QLK &DB) {
     cout << "Your Account: " << this->Account << " "
