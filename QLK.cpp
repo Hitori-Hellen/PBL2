@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -125,9 +126,18 @@ void QLK::Sort(string c) {
     }
 }
 void QLK::Show_QLK() {
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
+    cout << "+ Name                | Genre               | Developer | Year | Price    | Stock | Rate |" <<endl;
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
     for (int i = 0; i < this->len; i++) {
-        (*(this->arr + i)).show();
+        cout << "| " << setw(20) << left << (*(this->arr + i)).getName() << "| " << setw(20) << left << (*(this->arr + i)).getGen()
+        << "| " << setw(10) << left << (*(this->arr + i)).getDev()
+        << "| " << setw(5) << left << (*(this->arr + i)).getYear()
+        << "| " << setw(9) << left << (*(this->arr + i)).getPrice()
+        << "| " << setw(6) << left << (*(this->arr + i)).getStock()
+        << "| " << setw(5) << left << (*(this->arr + i)).getRating() << "|" <<endl;
     }
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
 }
 void QLK::deleteGameDB(Game l, int idx) {
     if (this->len == 1) {
