@@ -70,20 +70,33 @@ void User::setBalance(long User_Balance) {
 void User::addBalance(long Add_money) {
     this->Balance += Add_money;
     ofstream tempFile("temp.txt");
-    string line;
     ifstream UserDBFile("UserDB.txt");
+    string line;
     string usrname;
-    while(getline(UserDBFile, line)) {
-        istringstream iss(line);
-        iss >> usrname;
-        if (usrname == this->Account) {
-            tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
-            for (int i = 0; i < this->User_library_len; i++) {
-                tempFile << " " << *(this->User_library + i);
+    getline(UserDBFile, line);
+    istringstream iss(line);
+    iss >> usrname;
+    if (usrname != this->Account) {
+        tempFile << line;
+        while(getline(UserDBFile, line)) {
+            istringstream iss1(line);
+            iss1 >> usrname;
+            if (usrname == this->Account) {
+                tempFile << endl << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+                for (int i = 0; i < this->User_library_len; i++) {
+                    tempFile << " " << *(this->User_library + i);
+                }
+            } else {
+                tempFile << endl << line;
             }
-            tempFile << endl;
-        } else {
-            tempFile << line << endl;
+        }
+    } else if (usrname == this->Account) {
+        tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+        for (int i = 0; i < this->User_library_len; i++) {
+            tempFile << " " << *(this->User_library + i);
+        }
+        while(getline(UserDBFile, line)) {
+            tempFile << endl << line;
         }
     }
     tempFile.close();
@@ -127,40 +140,65 @@ void User::buy(Game GameObj) {
             this->User_library_len++;
         }
         this->Balance -= GameObj.getPrice();
+        GameObj.setStock(GameObj.getStock() - 1);
         ofstream tempFile("temp.txt");
-        string line;
         ifstream UserDBFile("UserDB.txt");
+        string line;
         string usrname;
-        while(getline(UserDBFile, line)) {
-            istringstream iss(line);
-            iss >> usrname;
-            if (usrname == this->Account) {
-                tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
-                for (int i = 0; i < this->User_library_len; i++) {
-                    tempFile << " " << *(this->User_library + i);
+        getline(UserDBFile, line);
+        istringstream iss(line);
+        iss >> usrname;
+        if (usrname != this->Account) {
+            tempFile << line;
+            while(getline(UserDBFile, line)) {
+                istringstream iss1(line);
+                iss1 >> usrname;
+                if (usrname == this->Account) {
+                    tempFile << endl << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+                    for (int i = 0; i < this->User_library_len; i++) {
+                        tempFile << " " << *(this->User_library + i);
+                    }
+                } else {
+                    tempFile << endl << line;
                 }
-                tempFile << endl;
-            } else {
-                tempFile << line << endl;
+            }
+        } else if (usrname == this->Account) {
+            tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+            for (int i = 0; i < this->User_library_len; i++) {
+                tempFile << " " << *(this->User_library + i);
+            }
+            while(getline(UserDBFile, line)) {
+                tempFile << endl << line;
             }
         }
         tempFile.close();
         UserDBFile.close();
         remove("UserDB.txt");
         rename("temp.txt", "UserDB.txt");
+
         ofstream tempFile1("temp1.txt");
         ifstream GameDBFile("GameDB.txt");
         string gameName;
-        while(getline(GameDBFile, line)) {
-            istringstream iss(line);
-            iss >> gameName;
-            if (gameName == GameObj.getName()) {
-                tempFile1 << GameObj.getName() << " " << GameObj.getGen() << " " << GameObj.getDev() << " " << GameObj.getYear() << " " << GameObj.getPrice() << " " << GameObj.getStock() << " " << GameObj.getRating() << endl;
-            } else {
-                tempFile1 << line << endl;
+        getline(GameDBFile, line);
+        istringstream iss2(line);
+        iss2 >> gameName;
+        if (gameName != GameObj.getName()) {
+            tempFile1 << line;
+            while(getline(GameDBFile, line)) {
+                istringstream iss1(line);
+                iss1 >> gameName;
+                if (gameName == GameObj.getName()) {
+                    tempFile1 << endl << GameObj.getName() << " " << GameObj.getGen() << " " << GameObj.getDev() << " " << GameObj.getYear() << " " << GameObj.getPrice() << " " << GameObj.getStock() << " " << GameObj.getRating();
+                } else {
+                    tempFile1 << endl << line;
+                }
+            }
+        } else if (gameName == GameObj.getName()) {
+            tempFile1 << GameObj.getName() << " " << GameObj.getGen() << " " << GameObj.getDev() << " " << GameObj.getYear() << " " << GameObj.getPrice() << " " << GameObj.getStock() << " " << GameObj.getRating();
+            while(getline(GameDBFile, line)) {
+                tempFile1 << endl << line;
             }
         }
-        tempFile << "\b";
         tempFile1.close();
         GameDBFile.close();
         remove("GameDB.txt");
@@ -339,14 +377,26 @@ void ListUser::deleteAccount(string Account, int idx, string UserDBPath) {
         this->List_user_len--;
     }
     ofstream tempFile("temp.txt");
-    string line;
     ifstream UserDBFile(UserDBPath);
+    string line;
     string usrname;
-    while(getline(UserDBFile, line)) {
-        istringstream iss(line);
-        iss >> usrname;
-        if (usrname != Account) {
-            tempFile << line << endl;
+    getline(UserDBFile, line);
+    istringstream iss(line);
+    iss >> usrname;
+    if (usrname != Account) {
+        tempFile << line;
+        while(getline(UserDBFile, line)) {
+            istringstream iss1(line);
+            iss1 >> usrname;
+            if (usrname != Account) {
+                tempFile << endl << line;
+            }
+        }
+    } else if (usrname == Account) {
+        getline(UserDBFile, line);
+        tempFile << line;
+        while(getline(UserDBFile, line)) {
+            tempFile << endl << line;
         }
     }
     tempFile.close();

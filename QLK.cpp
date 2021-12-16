@@ -159,14 +159,26 @@ void QLK::deleteGameDB(Game l, int idx, string GameDBPath) {
         this->len--;
     }
     ofstream tempFile("temp.txt");
-    string line;
     ifstream GameDBFile(GameDBPath);
+    string line;
     string gameName;
-    while(getline(GameDBFile, line)) {
-        istringstream iss(line);
-        iss >> gameName;
-        if (gameName != l.getName()) {
-            tempFile << line << endl;
+    getline(GameDBFile, line);
+    istringstream iss(line);
+    iss >> gameName;
+    if (gameName != l.getName()) {
+        tempFile << line;
+        while(getline(GameDBFile, line)) {
+            istringstream iss1(line);
+            iss1 >> gameName;
+            if (gameName != l.getName()) {
+                tempFile << endl << line;
+            }
+        }
+    } else if (gameName == l.getName()) {
+        getline(GameDBFile, line);
+        tempFile << line;
+        while(getline(GameDBFile, line)) {
+            tempFile << endl << line;
         }
     }
     tempFile.close();
