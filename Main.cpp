@@ -276,7 +276,8 @@ int main() {
                         cin >> name;
                         int idx = db_Game.search(name);
                         Game gameObj = db_Game.Return_object(idx);
-                        User.buy(name, gameObj);
+                        User.buy(gameObj);
+                        db_Game.updateStock(true, 0, idx);
                         User.showUser(db_Game);
                         system("pause");
                         char x = getchar();

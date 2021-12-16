@@ -94,22 +94,24 @@ void User::addBalance(long Add_money) {
 long User::getBalance() {
     return this->Balance;
 }
-void User::buy(string Game_ID, Game GameObj) {
+void User::buy(Game GameObj) {
     bool libraryCheck = false;
     for (int i = 0; i < this->User_library_len; i++) {
-        if (*(this->User_library + i) == Game_ID) {
+        if (*(this->User_library + i) == GameObj.getName()) {
             libraryCheck = true;
             break;
         }
     }
     if (libraryCheck) {
         cout << "You already own this game!";
+    } else if (GameObj.getStock() == 0) {
+        cout << "This game is out of stock!";
     } else if (this->Balance < GameObj.getPrice()) {
         cout << "Your wallet balance is too low to cover this transaction!";
     } else {
         if (this->User_library_len == 0) {
             this->User_library = new string[User_library_len + 1];
-            *(User_library + this->User_library_len) = Game_ID;
+            *(User_library + this->User_library_len) = GameObj.getName();
             this->User_library_len++;
         } else {
             string *Temp = new string[this->User_library_len];
@@ -121,7 +123,7 @@ void User::buy(string Game_ID, Game GameObj) {
             for (int i = 0; i < this->User_library_len; i++) {
                 *(this->User_library + i) = *(Temp + i);
             }
-            *(this->User_library + this->User_library_len) = Game_ID;
+            *(this->User_library + this->User_library_len) = GameObj.getName();
             this->User_library_len++;
         }
         this->Balance -= GameObj.getPrice();
@@ -146,6 +148,23 @@ void User::buy(string Game_ID, Game GameObj) {
         UserDBFile.close();
         remove("UserDB.txt");
         rename("temp.txt", "UserDB.txt");
+        ofstream tempFile1("temp1.txt");
+        ifstream GameDBFile("GameDB.txt");
+        string gameName;
+        while(getline(GameDBFile, line)) {
+            istringstream iss(line);
+            iss >> gameName;
+            if (gameName == GameObj.getName()) {
+                tempFile1 << GameObj.getName() << " " << GameObj.getGen() << " " << GameObj.getDev() << " " << GameObj.getYear() << " " << GameObj.getPrice() << " " << GameObj.getStock() << " " << GameObj.getRating() << endl;
+            } else {
+                tempFile1 << line << endl;
+            }
+        }
+        tempFile << "\b";
+        tempFile1.close();
+        GameDBFile.close();
+        remove("GameDB.txt");
+        rename("temp1.txt", "GameDB.txt");
     }
 }
 void User::showUser(QLK &DB) {

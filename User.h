@@ -30,7 +30,7 @@ public:
     string getPassword();
     int getAge();
     long getBalance();
-    void buy(string, Game);
+    void buy(Game);
     void search(string, QLK &); // Search and show
     void showUser(QLK &);
 };

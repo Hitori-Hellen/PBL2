@@ -20,7 +20,7 @@ public:
     void deleteGameDB(Game, int, string);
     void Sort(string);
     void Update_data(Game, int);
-    void Update_numberS(bool, int, int);
+    void updateStock(bool, int, int);
     Game Return_object(int);
     void Show_QLK();
 };

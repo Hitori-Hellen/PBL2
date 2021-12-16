@@ -177,7 +177,7 @@ void QLK::deleteGameDB(Game l, int idx, string GameDBPath) {
 void QLK::Update_data(Game l, int index) {
     *(this->arr + index) = l;
 }
-void QLK::Update_numberS(bool x, int y = 0, int index = 0) {
+void QLK::updateStock(bool x, int y = 0, int index = 0) {
     if (x == true) {
         (*(this->arr + index)).setStock((*(this->arr + index)).getStock() - 1);
     } else {
