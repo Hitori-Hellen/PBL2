@@ -10,10 +10,10 @@ using namespace std;
 //     this->arr = nullptr;
 //     this->len = 0;
 // }
-QLK::QLK(string FilePath) {
+QLK::QLK(string GameDBPath) {
     int number_of_lines = 0;
     ifstream in;
-    in.open(FilePath);
+    in.open(GameDBPath);
     string line;
     while (getline(in, line)) {
         ++number_of_lines;
@@ -29,7 +29,7 @@ QLK::QLK(string FilePath) {
     int _Price_game;
     int _NumberS_game;
     double _Rating_game;
-    in.open(FilePath);
+    in.open(GameDBPath);
     while (!in.eof()) {
         in >> _Name_game >> _Genre_game >> _Developer_game >> _ReleaseYear_game >> _Price_game >> _NumberS_game >> _Rating_game;
         Game object;
@@ -54,7 +54,7 @@ void QLK::Length(int x) {
 int QLK::Length() {
     return this->len;
 }
-void QLK::addGameDB(Game l, string FilePath) {
+void QLK::addGameDB(Game l, string GameDBPath) {
     if (this->len == 0) {
         this->arr = new Game[this->len + 1];
         *(this->arr + this->len) = l;
@@ -71,7 +71,7 @@ void QLK::addGameDB(Game l, string FilePath) {
         *(this->arr + this->len) = l;
     }
     ofstream gamedb;
-    gamedb.open(FilePath, ios::app);
+    gamedb.open(GameDBPath, ios::app);
     gamedb << endl;
     gamedb << l.getName() << " " << l.getGen() << " " << l.getDev() << " " << l.getYear() << " " << l.getPrice() << " " << l.getStock() << " " << l.getRating();
     gamedb.close();
@@ -139,7 +139,7 @@ void QLK::Show_QLK() {
     }
     cout << "+----------------------------------------------------------------------------------------+" <<endl;
 }
-void QLK::deleteGameDB(Game l, int idx) {
+void QLK::deleteGameDB(Game l, int idx, string GameDBPath) {
     if (this->len == 1) {
         delete[] this->arr;
     } else {
@@ -158,6 +158,21 @@ void QLK::deleteGameDB(Game l, int idx) {
         }
         this->len--;
     }
+    ofstream tempFile("temp.txt");
+    string line;
+    ifstream GameDBFile(GameDBPath);
+    string gameName;
+    while(getline(GameDBFile, line)) {
+        istringstream iss(line);
+        iss >> gameName;
+        if (gameName != l.getName()) {
+            tempFile << line << endl;
+        }
+    }
+    tempFile.close();
+    GameDBFile.close();
+    remove("GameDB.txt");
+    rename("temp.txt", "GameDB.txt");
 }
 void QLK::Update_data(Game l, int index) {
     *(this->arr + index) = l;

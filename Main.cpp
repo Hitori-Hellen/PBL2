@@ -6,7 +6,7 @@
 #include <iostream>
 
 using namespace std;
-string GetPassword(int length = 12) {
+string GetPassword(int length = 32) {
     char c;
     string password;
     c = _getch();
@@ -31,17 +31,16 @@ int main() {
         Ham Show_limit_and_search(), doi mat khau CPassword_user()
         Hoan thien Menu main - Sua logic
     */
-    string FilePath = "GameDB.txt";
-    string FilePath_user = "UserDB.txt";
-    QLK db_Game(FilePath);
-    ListUser db_User(FilePath_user);
+    string GameDBPath = "GameDB.txt";
+    string UserDBPath = "UserDB.txt";
+    QLK db_Game(GameDBPath);
+    ListUser db_User(UserDBPath);
     Admin Admin;
     User User;
     int choose;
     string username, password;
     string choice;
     string name;
-    bool cb = true;
     while (true) {
         cout << "Welcome" << endl;
         cout << "Who Are You" << endl;
@@ -128,7 +127,7 @@ int main() {
                         cout << "Enter Rating: ";
                         cin >> _Rating_game;
                         Game Obj_g(_Name_game, _Genre_game, _Developer_game, _ReleaseYear_game, _Price_game, _NumberS_game, _Rating_game);
-                        db_Game.addGameDB(Obj_g, FilePath);
+                        db_Game.addGameDB(Obj_g, GameDBPath);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -167,7 +166,7 @@ int main() {
                         cin >> _Name_game;
                         int idx_g = db_Game.search(_Name_game);
                         Game obj_g = db_Game.Return_object(idx_g);
-                        db_Game.deleteGameDB(obj_g, idx_g);
+                        db_Game.deleteGameDB(obj_g, idx_g, GameDBPath);
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -256,12 +255,12 @@ int main() {
                 break;
             }
         } else if (choose == 3) {
-            cout << "Nhap username: ";
+            cout << "Enter username: ";
             cin >> username;
             cout << endl;
-            cout << "Nhap password: ";
+            cout << "Enter password: ";
             cin >> password;
-            db_User.signUp(username, password, FilePath_user);
+            db_User.signUp(username, password, UserDBPath);
         } else if (choose == 4) {
             cout << "See you soon";
             break;

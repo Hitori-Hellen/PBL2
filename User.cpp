@@ -102,10 +102,10 @@ void User::showUser(QLK &DB) {
         obj_temp.show();
     }
 }
-ListUser::ListUser(string FilePath_user) {
+ListUser::ListUser(string UserDBPath) {
     int number_of_lines = 0;
     ifstream in;
-    in.open(FilePath_user);
+    in.open(UserDBPath);
     string line;
     while (getline(in, line)) {
         ++number_of_lines;
@@ -119,7 +119,7 @@ ListUser::ListUser(string FilePath_user) {
     long Var_User_Balance;
     int Var_User_library_len;
     string Var_User_Game_Id;
-    in.open(FilePath_user);
+    in.open(UserDBPath);
     string line1;
     while (getline(in, line1)) {
         istringstream iss(line1);
@@ -179,7 +179,7 @@ bool ListUser::checkAccount(string Input) {
     }
 }
 
-void ListUser::signUp(string Input_Account, string Input_Password, string FilePath_user) {
+void ListUser::signUp(string Input_Account, string Input_Password, string UserDBPath) {
     while (true) {
         if (this->checkAccount(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
@@ -200,7 +200,7 @@ void ListUser::signUp(string Input_Account, string Input_Password, string FilePa
             *(this->List_User + this->List_user_len) = Person;
             this->List_user_len++;
             ofstream userdb;
-            userdb.open(FilePath_user, ios::app);
+            userdb.open(UserDBPath, ios::app);
             userdb << endl;
             userdb << Person.getAccount() << " " << Person.getPassword() << " " << Person.getAge() << " " << Person.getBalance() << " "
                    << "0";
@@ -208,6 +208,7 @@ void ListUser::signUp(string Input_Account, string Input_Password, string FilePa
             break;
         } else {
             cout << "Your account is used. Please use another name!!!" << endl;
+            break;
         }
     }
 }

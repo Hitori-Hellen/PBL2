@@ -17,7 +17,7 @@ public:
     int Length();
     void addGameDB(Game, string);
     int search(string);
-    void deleteGameDB(Game, int);
+    void deleteGameDB(Game, int, string);
     void Sort(string);
     void Update_data(Game, int);
     void Update_numberS(bool, int, int);
