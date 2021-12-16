@@ -69,28 +69,6 @@ void User::setBalance(long User_Balance) {
 }
 void User::addBalance(long Add_money) {
     this->Balance += Add_money;
-}
-long User::getBalance() {
-    return this->Balance;
-}
-void User::buy(string Game_ID) {
-    if (this->User_library_len == 0) {
-        this->User_library = new string[User_library_len + 1];
-        *(User_library + this->User_library_len) = Game_ID;
-        this->User_library_len++;
-    } else {
-        string *Temp = new string[this->User_library_len];
-        for (int i = 0; i < this->User_library_len; i++) {
-            *(Temp + i) = *(this->User_library + i);
-        }
-        delete[] this->User_library;
-        this->User_library = new string[this->User_library_len + 1];
-        for (int i = 0; i < this->User_library_len; i++) {
-            *(this->User_library + i) = *(Temp + i);
-        }
-        *(this->User_library + this->User_library_len) = Game_ID;
-        this->User_library_len++;
-    }
     ofstream tempFile("temp.txt");
     string line;
     ifstream UserDBFile("UserDB.txt");
@@ -112,6 +90,63 @@ void User::buy(string Game_ID) {
     UserDBFile.close();
     remove("UserDB.txt");
     rename("temp.txt", "UserDB.txt");
+}
+long User::getBalance() {
+    return this->Balance;
+}
+void User::buy(string Game_ID, Game GameObj) {
+    bool libraryCheck = false;
+    for (int i = 0; i < this->User_library_len; i++) {
+        if (*(this->User_library + i) == Game_ID) {
+            libraryCheck = true;
+            break;
+        }
+    }
+    if (libraryCheck) {
+        cout << "You already own this game!";
+    } else if (this->Balance < GameObj.getPrice()) {
+        cout << "Your wallet balance is too low to cover this transaction!";
+    } else {
+        if (this->User_library_len == 0) {
+            this->User_library = new string[User_library_len + 1];
+            *(User_library + this->User_library_len) = Game_ID;
+            this->User_library_len++;
+        } else {
+            string *Temp = new string[this->User_library_len];
+            for (int i = 0; i < this->User_library_len; i++) {
+                *(Temp + i) = *(this->User_library + i);
+            }
+            delete[] this->User_library;
+            this->User_library = new string[this->User_library_len + 1];
+            for (int i = 0; i < this->User_library_len; i++) {
+                *(this->User_library + i) = *(Temp + i);
+            }
+            *(this->User_library + this->User_library_len) = Game_ID;
+            this->User_library_len++;
+        }
+        this->Balance -= GameObj.getPrice();
+        ofstream tempFile("temp.txt");
+        string line;
+        ifstream UserDBFile("UserDB.txt");
+        string usrname;
+        while(getline(UserDBFile, line)) {
+            istringstream iss(line);
+            iss >> usrname;
+            if (usrname == this->Account) {
+                tempFile << this->getAccount() << " " << this->getPassword() << " " << this->getAge() << " " << this->getBalance() << " " << this->getUser_library_len();
+                for (int i = 0; i < this->User_library_len; i++) {
+                    tempFile << " " << *(this->User_library + i);
+                }
+                tempFile << endl;
+            } else {
+                tempFile << line << endl;
+            }
+        }
+        tempFile.close();
+        UserDBFile.close();
+        remove("UserDB.txt");
+        rename("temp.txt", "UserDB.txt");
+    }
 }
 void User::showUser(QLK &DB) {
     cout << "Your Account: " << this->Account << " "

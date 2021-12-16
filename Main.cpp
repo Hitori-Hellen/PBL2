@@ -230,10 +230,11 @@ int main() {
                         system("cls");
                     } else if (choose == 2) {
                         db_Game.Show_QLK();
-                        // func
                         cout << "Enter Name of Game you want to buy: ";
                         cin >> name;
-                        User.buy(name);
+                        int idx = db_Game.search(name);
+                        Game gameObj = db_Game.Return_object(idx);
+                        User.buy(name, gameObj);
                         User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
