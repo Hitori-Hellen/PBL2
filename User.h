@@ -49,4 +49,5 @@ public:
     void showListUser(QLK &);
     User returnUser(string);
     int searchUser(string);
+    void deleteAccount(string, int, string);
 };

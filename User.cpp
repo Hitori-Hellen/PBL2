@@ -217,7 +217,7 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
             userdb.close();
             break;
         } else {
-            cout << "Your account is used. Please use another name!!!" << endl;
+            cout << "Username already exists. Please use another name!!!" << endl;
             break;
         }
     }
@@ -243,4 +243,39 @@ User ListUser::returnUser(string User_Name) {
     User Temp_User;
     Temp_User = *(this->List_User + Index_User);
     return Temp_User;
+}
+void ListUser::deleteAccount(string Account, int idx, string UserDBPath) {
+    if (this->List_user_len == 1) {
+        delete[] this->List_User;
+    } else {
+        User *temp = new User[this->List_user_len];
+        for (int i = 0; i < this->List_user_len; i++) {
+            *(temp + i) = *(this->List_User + i);
+        }
+        delete[] this->List_User;
+        this->List_User = new User[this->List_user_len - 1];
+        for (int i = 0; i < this->List_user_len - 1; i++) {
+            if (i < idx) {
+                *(this->List_User + i) = *(temp + i);
+            } else {
+                *(this->List_User + i) = *(temp + i + 1);
+            }
+        }
+        this->List_user_len--;
+    }
+    ofstream tempFile("temp.txt");
+    string line;
+    ifstream UserDBFile(UserDBPath);
+    string usrname;
+    while(getline(UserDBFile, line)) {
+        istringstream iss(line);
+        iss >> usrname;
+        if (usrname != Account) {
+            tempFile << line << endl;
+        }
+    }
+    tempFile.close();
+    UserDBFile.close();
+    remove("UserDB.txt");
+    rename("temp.txt", "UserDB.txt");
 }
