@@ -27,7 +27,7 @@ string GetPassword(int length = 32) {
 }
 int main() {
     /*
-        xu li deleteGameDB(QLK), buy(User)-ghi vao txt, Delete_user(ListUser)-xoa trong txt, Sort(Tangdan,Giamdan)
+        xu li Sort(Tangdan,Giamdan)
         Ham Show_limit_and_search(), doi mat khau CPassword_user()
         Hoan thien Menu main - Sua logic
     */
@@ -99,7 +99,6 @@ int main() {
                         cin >> choice;
                         db_Game.Sort(choice);
                         db_Game.Show_QLK();
-                        //cout << "Press anykey to come back..";
                         system("pause");
                         char x = getchar();
                         system("cls");
@@ -219,7 +218,7 @@ int main() {
                     cout << "3. Add more Balance" << endl;
                     cout << "4. Back" << endl;
                     cout << endl;
-                    cout << "choose your choice: ";
+                    cout << "Pick your poison: ";
                     cin >> choose;
                     system("pause");
                     char x = getchar();
