@@ -42,6 +42,10 @@ int main() {
     string choice;
     string name;
     while (true) {
+        cout << "+---------------------------------+" <<endl;
+        cout << "+             VAPORWAVE           +" <<endl;
+        cout << "+---------------------------------+" <<endl;
+        cout << endl;
         cout << "Welcome" << endl;
         cout << "Who Are You" << endl;
         cout << "1.Admin" << endl;
@@ -82,6 +86,11 @@ int main() {
                 }
                 system("cls");
                 while (true) {
+                    cout << "+---------------------------------+" << endl;
+                    cout << "+             VAPORWAVE           +" << endl;
+                    cout << "+            Admin menu           +" << endl;
+                    cout << "+---------------------------------+" << endl;
+                    cout << endl;
                     cout << "Welcome Admin!" << endl;
                     cout << "What do you want to do:" << endl;
                     cout << "1. Show Game Database" << endl;
@@ -95,7 +104,11 @@ int main() {
                     cin >> choose;
                     system("cls");
                     if (choose == 1) {
-                        cout << "Enter your sort type: ";
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
+                        cout << "Enter your sort type(Ex: year, rate, price, name): ";
                         cin >> choice;
                         db_Game.Sort(choice);
                         db_Game.Show_QLK();
@@ -104,6 +117,10 @@ int main() {
                         system("cls");
                     } else if (choose == 2) {
                         // INFIle
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         string _Name_game;
                         string _Genre_game;
                         string _Developer_game;
@@ -131,6 +148,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         string _Name_game;
                         string _Genre_game;
                         string _Developer_game;
@@ -160,6 +181,10 @@ int main() {
                         system("cls");
                     } else if (choose == 4) {
                         // Delete File
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         string _Name_game;
                         cout << "Which game do you want to remove: ";
                         cin >> _Name_game;
@@ -170,6 +195,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 5) {
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         db_User.showListUser(db_Game);
                         system("pause");
                         char x = getchar();
@@ -211,6 +240,11 @@ int main() {
                 User = db_User.returnUser(username);
                 while (true) {
                     system("cls");
+                    cout << "+---------------------------------+" <<endl;
+                    cout << "+             VAPORWAVE           +" <<endl;
+                    cout << "+             User menu           +" <<endl;
+                    cout << "+---------------------------------+" <<endl;
+                    cout << endl;
                     cout << "Welcome " << User.getAccount() << endl;
                     cout << "What do you want to do" << endl;
                     cout << "1. Show your library" << endl;
@@ -224,11 +258,19 @@ int main() {
                     char x = getchar();
                     system("cls");
                     if (choose == 1) {
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
                     } else if (choose == 2) {
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         db_Game.Show_QLK();
                         cout << "Enter Name of Game you want to buy: ";
                         cin >> name;
@@ -240,6 +282,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
+                        cout << "+---------------------------------+" <<endl;
+                        cout << "+             VAPORWAVE           +" <<endl;
+                        cout << "+---------------------------------+" <<endl;
+                        cout << endl;
                         int Money;
                         cout << "Enter your Number: ";
                         cin >> Money;
@@ -255,6 +301,10 @@ int main() {
                 break;
             }
         } else if (choose == 3) {
+            cout << "+---------------------------------+" <<endl;
+            cout << "+             VAPORWAVE           +" <<endl;
+            cout << "+---------------------------------+" <<endl;
+            cout << endl;
             cout << "Enter username: ";
             cin >> username;
             cout << endl;
