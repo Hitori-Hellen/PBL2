@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -96,11 +97,20 @@ void User::showUser(QLK &DB) {
          << "Your Age: " << this->Age << " "
          << "Your Balance: " << this->Balance << endl;
     cout << "Your library Game: " << this->User_library_len << endl;
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
+    cout << "+ Name                | Genre               | Developer | Year | Price    | Stock | Rate |" <<endl;
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
     for (int i = 0; i < this->User_library_len; i++) {
         int Game_index = DB.search(*(this->User_library + i));
         Game obj_temp = DB.Return_object(Game_index);
-        obj_temp.show();
+        cout << "| " << setw(20) << left << obj_temp.getName() << "| " << setw(20) << left << obj_temp.getGen()
+        << "| " << setw(10) << left << obj_temp.getDev()
+        << "| " << setw(5) << left << obj_temp.getYear()
+        << "| " << setw(9) << left << obj_temp.getPrice()
+        << "| " << setw(6) << left << obj_temp.getStock()
+        << "| " << setw(5) << left << obj_temp.getRating() << "|" <<endl;
     }
+    cout << "+----------------------------------------------------------------------------------------+" <<endl;
 }
 ListUser::ListUser(string UserDBPath) {
     int number_of_lines = 0;
