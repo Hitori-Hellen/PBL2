@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <fstream>
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 string GetPassword(int length = 32) {
@@ -42,7 +43,7 @@ int main() {
     string choice;
     string name;
     cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
-    cout << "\t\t\t\t" << "+       PBL2 : He thong quan ly mua ban Game      +" << endl;
+    cout << "\t\t\t\t" << "+       PBL2 : He thong quan ly mua ban Game     +" << endl;
     cout << "\t\t\t\t" << "+                     Nhom : 3                   +" << endl;
     cout << "\t\t\t\t" << "+                Nguoi thuc hien:                +" << endl;
     cout << "\t\t\t\t" << "+      Nguyen Trong Sang - Le Viet Tung Duong    +" << endl;
@@ -326,8 +327,19 @@ int main() {
             db_User.signUp(username, password, UserDBPath);
             system("cls");
         } else if (choose == 4) {
-            cout << "See you soon";
-            break;
+            cout << "Are you sure you want to exit (#^.^#) ";
+            string ans;
+            cin >> ans;
+            if (ans == "y" || ans == "Yes" || ans == "YES" || ans == "yes") {
+                system("cls");
+                cout << "\33[2K\rAlright see you next time (^-^)/";
+                sleep(2);
+                break;
+            }
+            else if (ans == "n" || ans == "No" || ans == "NO" || ans == "no") {
+                system("cls");
+                continue;
+            }
         }
     }
 }
