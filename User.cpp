@@ -207,7 +207,7 @@ void User::showUser(QLK &DB) {
     cout << "+----------------------------------------------------------------------------------------+" <<endl;
     for (int i = 0; i < this->User_library_len; i++) {
         int Game_index = DB.search(*(this->User_library + i));
-        Game obj_temp = DB.Return_object(Game_index);
+        Game obj_temp = DB.returnGameObj(Game_index);
         cout << "| " << setw(20) << left << obj_temp.getName() << "| " << setw(20) << left << obj_temp.getGen()
         << "| " << setw(10) << left << obj_temp.getDev()
         << "| " << setw(5) << left << obj_temp.getYear()

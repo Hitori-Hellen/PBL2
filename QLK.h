@@ -12,14 +12,11 @@ private:
 public:
     QLK(string);
     ~QLK();
-    void Length(int);
-    int Length();
     void addGameDB(Game, string);
     int search(string);
     void deleteGameDB(Game, int, string);
-    void Sort(string);
-    void Update_data(Game, int);
+    void sort(string);
     void updateStock(bool, int, int);
-    Game Return_object(int);
-    void Show_QLK();
+    Game returnGameObj(int);
+    void showGameDB();
 };

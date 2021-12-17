@@ -43,12 +43,6 @@ QLK::QLK(string GameDBPath) {
 QLK::~QLK() {
     delete[] this->arr;
 }
-void QLK::Length(int x) {
-    this->len = x;
-}
-int QLK::Length() {
-    return this->len;
-}
 void QLK::addGameDB(Game l, string GameDBPath) {
     if (this->len == 0) {
         this->arr = new Game[this->len + 1];
@@ -73,7 +67,7 @@ void QLK::addGameDB(Game l, string GameDBPath) {
     this->len++;
 }
 
-void QLK::Sort(string c) {
+void QLK::sort(string c) {
     if (c == "year") {
         for (int i = 0; i < this->len - 1; i++) {
             for (int j = this->len - 1; j > i; j--) {
@@ -120,7 +114,7 @@ void QLK::Sort(string c) {
         }
     }
 }
-void QLK::Show_QLK() {
+void QLK::showGameDB() {
     cout << "+----------------------------------------------------------------------------------------+" <<endl;
     cout << "+ Name                | Genre               | Developer | Year | Price    | Stock | Rate |" <<endl;
     cout << "+----------------------------------------------------------------------------------------+" <<endl;
@@ -181,9 +175,6 @@ void QLK::deleteGameDB(Game l, int idx, string GameDBPath) {
     remove("GameDB.txt");
     rename("temp.txt", "GameDB.txt");
 }
-void QLK::Update_data(Game l, int index) {
-    *(this->arr + index) = l;
-}
 void QLK::updateStock(bool x, int y = 0, int index = 0) {
     if (x == true) {
         (*(this->arr + index)).setStock((*(this->arr + index)).getStock() - 1);
@@ -201,24 +192,8 @@ int QLK::search(string inp) {
     }
     return base;
 }
-Game QLK::Return_object(int idx) {
+Game QLK::returnGameObj(int idx) {
     Game object;
     object = *(this->arr + idx);
     return object;
-}
-int Find_string(string s1, string s2) {
-    int i, j;
-    int l1 = s1.length();
-    int l2 = s2.length();
-    for (i = 0; i < l2 - l1; i++) {
-        for (j = 0; j < l1; j++) {
-            if (s2[i + j] != s1[j]) {
-                break;
-            }
-        }
-        if (j == l1) {
-            return i;
-        }
-    }
-    return -1;
 }

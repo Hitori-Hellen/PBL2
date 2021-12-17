@@ -75,7 +75,7 @@ int main() {
                     system("cls");
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                    cout << "\t\t\t\t" << "+           Admin login           +" <<endl;
+                    cout << "\t\t\t\t" << "+           Admin Login           +" <<endl;
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << endl;
                     cout << "Sign in!" << endl;
@@ -99,18 +99,17 @@ int main() {
                 while (true) {
                     cout << "\t\t\t\t" << "+---------------------------------+" << endl;
                     cout << "\t\t\t\t" << "+            VAPORWAVE            +" << endl;
-                    cout << "\t\t\t\t" << "+            Admin menu           +" << endl;
+                    cout << "\t\t\t\t" << "+         Admin Dashboard         +" << endl;
                     cout << "\t\t\t\t" << "+---------------------------------+" << endl;
                     cout << endl;
                     cout << "------->" << "Welcome Admin!" << endl;
                     cout << "------->" << "What do you want to do:" << endl;
                     cout << "------->" << "1. Show Game Database" << endl;
                     cout << "------->" << "2. Add Game" << endl;
-                    cout << "------->" << "3. Update Game Info" << endl;
-                    cout << "------->" << "4. Remove Game From Database" << endl;
-                    cout << "------->" << "5. Show User List" << endl;
-                    cout << "------->" << "6. Delete User" << endl;
-                    cout << "------->" << "7. Back" << endl;
+                    cout << "------->" << "3. Remove Game From Database" << endl;
+                    cout << "------->" << "4. Show User List" << endl;
+                    cout << "------->" << "5. Delete User" << endl;
+                    cout << "------->" << "6. Back" << endl;
                     cout << endl;
                     cout << "Pick your poison: ";
                     cin >> choose;
@@ -123,8 +122,8 @@ int main() {
                         cout << endl;
                         cout << "Enter your sort type(Ex: year, rating, price, name): ";
                         cin >> choice;
-                        db_Game.Sort(choice);
-                        db_Game.Show_QLK();
+                        db_Game.sort(choice);
+                        db_Game.showGameDB();
                         system("pause");
                         system("cls");
                     } else if (choose == 2) {
@@ -158,55 +157,23 @@ int main() {
                         db_Game.addGameDB(Obj_g, GameDBPath);
                         system("pause");
                         system("cls");
-                    } else if (choose == 3) {
+                    }  else if (choose == 3) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                        cout << "\t\t\t\t" << "+         Update Game Info        +" <<endl;
+                        cout << "\t\t\t\t" << "+    Remove Game from Database    +" <<endl;
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         string _Name_game;
-                        string _Genre_game;
-                        string _Developer_game;
-                        int _ReleaseYear_game;
-                        int _Price_game;
-                        int _NumberS_game;
-                        double _Rating_game;
-                        cout << "Enter Name: ";
-                        cin >> _Name_game;
-                        cout << "Enter Genre: ";
-                        cin >> _Genre_game;
-                        cout << "Enter Developer: ";
-                        cin >> _Developer_game;
-                        cout << "Enter Release year: ";
-                        cin >> _ReleaseYear_game;
-                        cout << "Enter Price: ";
-                        cin >> _Price_game;
-                        cout << "Enter Amount: ";
-                        cin >> _NumberS_game;
-                        cout << "Enter Rating: ";
-                        cin >> _Rating_game;
-                        Game Obj_g(_Name_game, _Genre_game, _Developer_game, _ReleaseYear_game, _Price_game, _NumberS_game, _Rating_game);
-                        int idx_g = db_Game.search(_Name_game);
-                        db_Game.Update_data(Obj_g, idx_g);
-                        system("pause");
-                        system("cls");
-                    } else if (choose == 4) {
-                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
-                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                        cout << "\t\t\t\t" << "+    Remove Game from database    +" <<endl;
-                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
-                        cout << endl;
-                        string _Name_game;
-                        db_Game.Show_QLK();
+                        db_Game.showGameDB();
                         cout << "Which game do you want to remove: ";
                         cin >> _Name_game;
                         int idx_g = db_Game.search(_Name_game);
-                        Game obj_g = db_Game.Return_object(idx_g);
+                        Game obj_g = db_Game.returnGameObj(idx_g);
                         db_Game.deleteGameDB(obj_g, idx_g, GameDBPath);
-                        db_Game.Show_QLK();
+                        db_Game.showGameDB();
                         system("pause");
                         system("cls");
-                    } else if (choose == 5) {
+                    } else if (choose == 4) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
                         cout << "\t\t\t\t" << "+         Show User List          +" <<endl;
@@ -215,7 +182,7 @@ int main() {
                         db_User.showListUser(db_Game);
                         system("pause");
                         system("cls");
-                    } else if (choose == 6) {
+                    } else if (choose == 5) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
                         cout << "\t\t\t\t" << "+           Delete User           +" <<endl;
@@ -226,9 +193,10 @@ int main() {
                         cin >> ND;
                         int User_idx = db_User.searchUser(ND);
                         db_User.deleteAccount(ND, User_idx, UserDBPath);
-                        cout << "Success....";
-                        system("pause > nul");
-                    } else if (choose == 7) {
+                        cout << "Aaaaaand it's gone";
+                        sleep(2);
+                        system("cls");
+                    } else if (choose == 6) {
                         break;
                     }
                 }
@@ -239,7 +207,7 @@ int main() {
                 while (true) {
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                    cout << "\t\t\t\t" << "+            User login           +" <<endl;
+                    cout << "\t\t\t\t" << "+            User Login           +" <<endl;
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << endl;
                     cout << "Sign in!" << endl;
@@ -271,7 +239,7 @@ int main() {
                     system("cls");
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                    cout << "\t\t\t\t" << "+            User menu            +" <<endl;
+                    cout << "\t\t\t\t" << "+            User Menu            +" <<endl;
                     cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << endl;
                     cout << "------->" << "Welcome " << User.getAccount() << endl;
@@ -287,7 +255,7 @@ int main() {
                     if (choose == 1) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                        cout << "\t\t\t\t" << "+        Show your library        +" <<endl;
+                        cout << "\t\t\t\t" << "+        Show your Library        +" <<endl;
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         User.showUser(db_Game);
@@ -299,12 +267,12 @@ int main() {
                         cout << "\t\t\t\t" << "+          Buy some Game          +" <<endl;
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
-                        db_Game.Show_QLK();
+                        db_Game.showGameDB();
                         cout << "Yo you wanna buy this new epic game called Half-Life 3 ?" << endl;
                         cout << "Nah i think imma go with ";
                         cin >> name;
                         int idx = db_Game.search(name);
-                        Game gameObj = db_Game.Return_object(idx);
+                        Game gameObj = db_Game.returnGameObj(idx);
                         User.buy(gameObj);
                         db_Game.updateStock(true, 0, idx);
                         cout << "Casting magic spells in the background please wait (*^_^*)" << endl;
