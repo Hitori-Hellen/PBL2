@@ -249,13 +249,11 @@ int main() {
                     cout << "What do you want to do" << endl;
                     cout << "1. Show your library" << endl;
                     cout << "2. Buy some Game" << endl;
-                    cout << "3. Add more Balance" << endl;
+                    cout << "3. Add Funds" << endl;
                     cout << "4. Back" << endl;
                     cout << endl;
                     cout << "Pick your poison: ";
                     cin >> choose;
-                    system("pause");
-                    char x = getchar();
                     system("cls");
                     if (choose == 1) {
                         cout << "+---------------------------------+" <<endl;
@@ -312,6 +310,7 @@ int main() {
             cout << "Enter password: ";
             cin >> password;
             db_User.signUp(username, password, UserDBPath);
+            system("cls");
         } else if (choose == 4) {
             cout << "See you soon";
             break;
