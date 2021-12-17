@@ -6,10 +6,6 @@
 
 using namespace std;
 
-// QLK::QLK(){
-//     this->arr = nullptr;
-//     this->len = 0;
-// }
 QLK::QLK(string GameDBPath) {
     int number_of_lines = 0;
     ifstream in;
@@ -20,7 +16,6 @@ QLK::QLK(string GameDBPath) {
     }
     this->len = 0;
     this->arr = new Game[number_of_lines];
-    // cout << number_of_lines << endl;
     in.close();
     string _Name_game;
     string _Genre_game;
@@ -77,7 +72,7 @@ void QLK::addGameDB(Game l, string GameDBPath) {
     gamedb.close();
     this->len++;
 }
-// con tro ham
+
 void QLK::Sort(string c) {
     if (c == "year") {
         for (int i = 0; i < this->len - 1; i++) {

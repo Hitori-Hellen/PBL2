@@ -10,7 +10,6 @@ private:
     int len;
 
 public:
-    // QLK();
     QLK(string);
     ~QLK();
     void Length(int);

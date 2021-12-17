@@ -26,10 +26,6 @@ User::User(string User_Account, string User_Password, int User_Age, long User_Ba
 }
 User::~User() {
 }
-/* void User::CreateUser_library(){
-    this->User_library = new string[this->User_library_len + 1];
-    *(this->User_library + this->User_library_len) = "Empty";
-} */
 void User::setUser_library(string arr[], int len_arr) {
     this->User_library = new string[len_arr];
     for (int i = 0; i < len_arr; i++) {
@@ -39,10 +35,6 @@ void User::setUser_library(string arr[], int len_arr) {
 int User::getUser_library_len() {
     return this->User_library_len;
 }
-/*
-string User::getUser_library(){
-    return *(this->User_library + 0);
-} */
 void User::setUser_library_len(int len) {
     this->User_library_len = len;
 }
@@ -310,7 +302,6 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
             int Input_Age;
             cin >> Input_Age;
             Person.setAge(Input_Age);
-            // Person.CreateUser_library();
             User *Temp = new User[this->List_user_len];
             for (int i = 0; i < this->List_user_len; i++) {
                 *(Temp + i) = *(this->List_User + i);

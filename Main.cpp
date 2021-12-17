@@ -42,13 +42,12 @@ int main() {
     string choice;
     string name;
     cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
-    cout << "\t\t\t\t" << "+       PBL2 : He thong qun ly mua ban Game      +" << endl;
+    cout << "\t\t\t\t" << "+       PBL2 : He thong quan ly mua ban Game      +" << endl;
     cout << "\t\t\t\t" << "+                     Nhom : 3                   +" << endl;
     cout << "\t\t\t\t" << "+                Nguoi thuc hien:                +" << endl;
     cout << "\t\t\t\t" << "+      Nguyen Trong Sang - Le Viet Tung Duong    +" << endl;
     cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
     system("pause");
-    char x = getchar();
     system("cls");
     while (true) {
         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -64,8 +63,6 @@ int main() {
         cout << endl;
         cout << "Pick your poison: ";
         cin >> choose;
-        system("pause");
-        char x = getchar();
         system("cls");
         if (choose == 1) {
             while (true) {
@@ -91,7 +88,6 @@ int main() {
                         break;
                     }
                 }
-                // !
                 if (Admin.loginAdmin(username, password) == false) {
                     break;
                 }
@@ -128,7 +124,6 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 2) {
-                        // INFIle
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
                         cout << "\t\t\t\t" << "+             Add Game            +" <<endl;
@@ -194,7 +189,6 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 4) {
-                        // Delete File
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
                         cout << "\t\t\t\t" << "+    Remove Game from databas     +" <<endl;
@@ -307,7 +301,6 @@ int main() {
                         int Money;
                         cout << "Enter your Number: ";
                         cin >> Money;
-                        // password??
                         User.addBalance(Money);
                         system("pause");
                         char x = getchar();
