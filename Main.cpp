@@ -304,7 +304,7 @@ int main() {
                         cout << "Wasting money on video games i see. So tell me how much this time: ";
                         cin >> Money;
                         User.addBalance(Money);
-                        system("pause");
+                        sleep(2);
                         system("cls");
                     } else if (choose == 4) {
                         break;

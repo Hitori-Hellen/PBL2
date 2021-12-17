@@ -319,6 +319,8 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
             userdb << Person.getAccount() << " " << Person.getPassword() << " " << Person.getAge() << " " << Person.getBalance() << " "
                    << "0";
             userdb.close();
+            cout << "Here's your account now go grab some games and give me the $$$";
+            sleep(2);
             break;
         } else {
             cout << "This name's already taken. Try zZ_DaRkF1Am3mAsTeR69420_Zz" << endl;
