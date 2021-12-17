@@ -79,7 +79,7 @@ int main() {
                     cout << "Password :";
                     password = GetPassword();
                     cout << endl;
-                    if (Admin.loginAdmin(username, password) == true) {
+                    if (Admin.signIn(username, password) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
@@ -88,7 +88,8 @@ int main() {
                         break;
                     }
                 }
-                if (Admin.loginAdmin(username, password) == false) {
+                // !
+                if (Admin.signIn(username, password) == false) {
                     break;
                 }
                 system("cls");
