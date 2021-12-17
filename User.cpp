@@ -306,7 +306,7 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
     while (true) {
         if (this->checkAccount(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
-            cout << "Please enter your age: ";
+            cout << "Enter your age: ";
             int Input_Age;
             cin >> Input_Age;
             Person.setAge(Input_Age);
