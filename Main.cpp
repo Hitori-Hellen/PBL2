@@ -3,6 +3,7 @@
 #include "User.h"
 #include <conio.h>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <unistd.h>
 
@@ -48,7 +49,7 @@ int main() {
     cout << "\t\t\t\t" << "+                Nguoi thuc hien:                +" << endl;
     cout << "\t\t\t\t" << "+      Nguyen Trong Sang - Le Viet Tung Duong    +" << endl;
     cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
-    system("pause");
+    sleep(3);
     system("cls");
     while (true) {
         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -83,8 +84,7 @@ int main() {
                     if (Admin.signIn(username, password) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
-                        system("pause");
-                        char x = getchar();
+                        sleep(2);
                         system("cls");
                         break;
                     }
@@ -233,12 +233,11 @@ int main() {
                     if (db_User.signIn(username, password) == true) {
                         cout << endl;
                         cout << "Success!" << endl;
-                        system("pause");
-                        char x = getchar();
+                        sleep(2);
                         system("cls");
                         break;
                     } else if (db_User.signIn(username, password) == false) {
-                        cout << "Countinue? : ";
+                        cout << "Login authentication failed. Would you like to retry? ";
                         cin >> choice;
                         if (choice == "n" || choice == "N" || choice == "no" || choice == "No" || choice == "NO") {
                             system("cls");
@@ -290,6 +289,22 @@ int main() {
                         Game gameObj = db_Game.Return_object(idx);
                         User.buy(gameObj);
                         db_Game.updateStock(true, 0, idx);
+                        cout << "Casting magic spells in the background please wait (*^_^*)" << endl;
+                        cout << endl;
+                        streamsize prev_precision = cout.precision();
+                        for (double i = 0; i < 10; i++) {
+                            cout << "\33[2K\r"
+                                << "[" << string(6 * i, char(219)) << string(6 * (10 - i), '-') << "]    " << 10 * i << "%  |  " << showpoint << setprecision(2) << "ETA: 00:00:0" << 5 - 0.5 * i;
+                            usleep(500000);
+                        }
+                        cout << "\33[2K\r"
+                            << "[" << string(60, char(219)) << "]    "
+                            << "100%  |  "
+                            << "Completed";
+                        usleep(500000);
+                        cout << noshowpoint << setprecision(prev_precision);
+                        cout << endl;
+                        cout << endl;
                         User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
@@ -336,7 +351,7 @@ int main() {
                 sleep(2);
                 break;
             }
-            else if (ans == "n" || ans == "No" || ans == "NO" || ans == "no") {
+            else {
                 system("cls");
                 continue;
             }
