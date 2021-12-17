@@ -28,11 +28,7 @@ string GetPassword(int length = 32) {
     return password;
 }
 int main() {
-    /*
-        xu li Sort(Tangdan,Giamdan)
-        Ham Show_limit_and_search(), doi mat khau CPassword_user()
-        Hoan thien Menu main - Sua logic
-    */
+	system("color 0F");
     string GameDBPath = "GameDB.txt";
     string UserDBPath = "UserDB.txt";
     QLK db_Game(GameDBPath);
@@ -349,6 +345,7 @@ int main() {
                 system("cls");
                 cout << "\33[2K\rAlright see you next time (^-^)/";
                 sleep(2);
+				system("color 0F");
                 break;
             }
             else {
