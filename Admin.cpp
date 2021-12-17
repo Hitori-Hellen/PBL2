@@ -14,3 +14,15 @@ bool Admin::signIn(string Admin_account, string Admin_password) {
     }
     return check;
 }
+void Admin::setAccount(string Admin_Account) {
+    this->Account = Admin_Account;
+}
+string Admin::getAccount() {
+    return this->Account;
+}
+void Admin::setPassword(string Admin_Password) {
+    this->Password = Admin_Password;
+}
+string Admin::getPassword() {
+    return this->Password;
+}

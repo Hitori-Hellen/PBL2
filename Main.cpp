@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include "Person.h"
 #include <unistd.h>
 
 using namespace std;

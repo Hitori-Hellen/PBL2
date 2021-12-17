@@ -1,13 +1,12 @@
 #include "QLK.h"
+#include "Person.h"
 #include <iostream>
 #pragma once
 
 using namespace std;
 
-class User {
+class User : public Person{
 protected:
-    string Account;
-    string Password;
     int Age;
     long Balance;
     int User_library_len;
