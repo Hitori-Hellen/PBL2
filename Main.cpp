@@ -65,12 +65,18 @@ int main() {
         if (choose == 1) {
             while (true) {
                 while (true) {
-                    cout << "Countinue? : ";
+                    cout << "Are you admin for real? ";
                     cin >> choice;
                     if (choice == "n" || choice == "N" || choice == "no" || choice == "No" || choice == "NO") {
                         system("cls");
                         break;
                     }
+                    system("cls");
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                    cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                    cout << "\t\t\t\t" << "+           Admin login           +" <<endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                    cout << endl;
                     cout << "Sign in!" << endl;
                     cout << "Account :";
                     cin >> username;
@@ -114,7 +120,7 @@ int main() {
                         cout << "\t\t\t\t" << "+       Show Game Database        +" <<endl;
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
-                        cout << "Enter your sort type(Ex: year, rate, price, name): ";
+                        cout << "Enter your sort type(Ex: year, rating, price, name): ";
                         cin >> choice;
                         db_Game.Sort(choice);
                         db_Game.Show_QLK();
@@ -143,7 +149,7 @@ int main() {
                         cin >> _ReleaseYear_game;
                         cout << "Enter Price: ";
                         cin >> _Price_game;
-                        cout << "Enter amount: ";
+                        cout << "Enter Amount: ";
                         cin >> _NumberS_game;
                         cout << "Enter Rating: ";
                         cin >> _Rating_game;
@@ -174,7 +180,7 @@ int main() {
                         cin >> _ReleaseYear_game;
                         cout << "Enter Price: ";
                         cin >> _Price_game;
-                        cout << "Enter amount: ";
+                        cout << "Enter Amount: ";
                         cin >> _NumberS_game;
                         cout << "Enter Rating: ";
                         cin >> _Rating_game;
@@ -230,6 +236,11 @@ int main() {
         } else if (choose == 2) {
             while (true) {
                 while (true) {
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                    cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                    cout << "\t\t\t\t" << "+            User login           +" <<endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                    cout << endl;
                     cout << "Sign in!" << endl;
                     cout << "Account :";
                     cin >> username;
@@ -288,7 +299,8 @@ int main() {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         db_Game.Show_QLK();
-                        cout << "Enter Name of Game you want to buy: ";
+                        cout << "Yo you wanna buy this new epic game called Half-Life 3 ?" << endl;
+                        cout << "Nah i think imma go with ";
                         cin >> name;
                         int idx = db_Game.search(name);
                         Game gameObj = db_Game.Return_object(idx);
@@ -320,7 +332,7 @@ int main() {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         int Money;
-                        cout << "Wasted money on video games. So tell me how much this time ";
+                        cout << "Wasting money on video games i see. So tell me how much this time: ";
                         cin >> Money;
                         User.addBalance(Money);
                         system("pause");
@@ -337,10 +349,10 @@ int main() {
             cout << "\t\t\t\t" << "+             Register            +" <<endl;
             cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
             cout << endl;
-            cout << "Tell me your username. Better not be some edgy names ";
+            cout << "Tell me your username. Better not be some edgy names: ";
             cin >> username;
             cout << endl;
-            cout << "Tell me your password. Don't worry, this will be our little secret ";
+            cout << "Tell me your password. Don't worry, this will be our little secret: ";
             cin >> password;
             db_User.signUp(username, password, UserDBPath);
             system("cls");
