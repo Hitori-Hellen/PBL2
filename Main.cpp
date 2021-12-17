@@ -28,7 +28,7 @@ string GetPassword(int length = 32) {
     return password;
 }
 int main() {
-	system("color 0F");
+    system("color 0B");
     string GameDBPath = "GameDB.txt";
     string UserDBPath = "UserDB.txt";
     QLK db_Game(GameDBPath);
@@ -85,7 +85,6 @@ int main() {
                         break;
                     }
                 }
-                // !
                 if (Admin.signIn(username, password) == false) {
                     break;
                 }
@@ -351,7 +350,7 @@ int main() {
                 system("cls");
                 cout << "\33[2K\rAlright see you next time (^-^)/";
                 sleep(2);
-				system("color 0F");
+                system("color 0F");
                 break;
             }
             else {
