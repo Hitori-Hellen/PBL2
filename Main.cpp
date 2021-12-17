@@ -41,20 +41,31 @@ int main() {
     string username, password;
     string choice;
     string name;
+    cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
+    cout << "\t\t\t\t" << "+       PBL2 : He thong qun ly mua ban Game      +" << endl;
+    cout << "\t\t\t\t" << "+                     Nhom : 3                   +" << endl;
+    cout << "\t\t\t\t" << "+                Nguoi thuc hien:                +" << endl;
+    cout << "\t\t\t\t" << "+      Nguyen Trong Sang - Le Viet Tung Duong    +" << endl;
+    cout << "\t\t\t\t" << "+------------------------------------------------+" << endl;
+    system("pause");
+    char x = getchar();
+    system("cls");
     while (true) {
-        cout << "+---------------------------------+" <<endl;
-        cout << "+             VAPORWAVE           +" <<endl;
-        cout << "+---------------------------------+" <<endl;
+        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
         cout << endl;
-        cout << "Welcome" << endl;
-        cout << "Who Are You" << endl;
-        cout << "1.Admin" << endl;
-        cout << "2.User" << endl;
-        cout << "3.New Guy!" << endl;
-        cout << "4.Exit" << endl;
+        cout << "------->" << "Welcome" << endl;
+        cout << "------->" << "Who Are You" << endl;
+        cout << "------->" << "1.Admin" << endl;
+        cout << "------->" << "2.User" << endl;
+        cout << "------->" << "3.New Guy!" << endl;
+        cout << "------->" << "4.Exit" << endl;
         cout << endl;
         cout << "Pick your poison: ";
         cin >> choose;
+        system("pause");
+        char x = getchar();
         system("cls");
         if (choose == 1) {
             while (true) {
@@ -86,27 +97,28 @@ int main() {
                 }
                 system("cls");
                 while (true) {
-                    cout << "+---------------------------------+" << endl;
-                    cout << "+             VAPORWAVE           +" << endl;
-                    cout << "+            Admin menu           +" << endl;
-                    cout << "+---------------------------------+" << endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" << endl;
+                    cout << "\t\t\t\t" << "+            VAPORWAVE            +" << endl;
+                    cout << "\t\t\t\t" << "+            Admin menu           +" << endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" << endl;
                     cout << endl;
-                    cout << "Welcome Admin!" << endl;
-                    cout << "What do you want to do:" << endl;
-                    cout << "1. Show Game Database" << endl;
-                    cout << "2. Add Game" << endl;
-                    cout << "3. Update Game Info" << endl;
-                    cout << "4. Remove Game From Database" << endl;
-                    cout << "5. Show User List" << endl;
-                    cout << "6. Back" << endl;
+                    cout << "------->" << "Welcome Admin!" << endl;
+                    cout << "------->" << "What do you want to do:" << endl;
+                    cout << "------->" << "1. Show Game Database" << endl;
+                    cout << "------->" << "2. Add Game" << endl;
+                    cout << "------->" << "3. Update Game Info" << endl;
+                    cout << "------->" << "4. Remove Game From Database" << endl;
+                    cout << "------->" << "5. Show User List" << endl;
+                    cout << "------->" << "6. Back" << endl;
                     cout << endl;
                     cout << "Pick your poison: ";
                     cin >> choose;
                     system("cls");
                     if (choose == 1) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+       Show Game Database        +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         cout << "Enter your sort type(Ex: year, rate, price, name): ";
                         cin >> choice;
@@ -117,9 +129,10 @@ int main() {
                         system("cls");
                     } else if (choose == 2) {
                         // INFIle
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+             Add Game            +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         string _Name_game;
                         string _Genre_game;
@@ -148,9 +161,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+         Update Game Info        +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         string _Name_game;
                         string _Genre_game;
@@ -181,9 +195,10 @@ int main() {
                         system("cls");
                     } else if (choose == 4) {
                         // Delete File
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+    Remove Game from databas     +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         string _Name_game;
                         cout << "Which game do you want to remove: ";
@@ -195,9 +210,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 5) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+         Show User List          +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         db_User.showListUser(db_Game);
                         system("pause");
@@ -240,17 +256,17 @@ int main() {
                 User = db_User.returnUser(username);
                 while (true) {
                     system("cls");
-                    cout << "+---------------------------------+" <<endl;
-                    cout << "+             VAPORWAVE           +" <<endl;
-                    cout << "+             User menu           +" <<endl;
-                    cout << "+---------------------------------+" <<endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                    cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                    cout << "\t\t\t\t" << "+            User menu            +" <<endl;
+                    cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                     cout << endl;
-                    cout << "Welcome " << User.getAccount() << endl;
-                    cout << "What do you want to do" << endl;
-                    cout << "1. Show your library" << endl;
-                    cout << "2. Buy some Game" << endl;
-                    cout << "3. Add more Balance" << endl;
-                    cout << "4. Back" << endl;
+                    cout << "------->" << "Welcome " << User.getAccount() << endl;
+                    cout << "------->" << "What do you want to do" << endl;
+                    cout << "------->" << "1. Show your library" << endl;
+                    cout << "------->" << "2. Buy some Game" << endl;
+                    cout << "------->" << "3. Add more Balance" << endl;
+                    cout << "------->" << "4. Back" << endl;
                     cout << endl;
                     cout << "Pick your poison: ";
                     cin >> choose;
@@ -258,18 +274,20 @@ int main() {
                     char x = getchar();
                     system("cls");
                     if (choose == 1) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+        Show your library        +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         User.showUser(db_Game);
                         system("pause");
                         char x = getchar();
                         system("cls");
                     } else if (choose == 2) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+          Buy some Game          +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         db_Game.Show_QLK();
                         cout << "Enter Name of Game you want to buy: ";
@@ -283,9 +301,10 @@ int main() {
                         char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
-                        cout << "+---------------------------------+" <<endl;
-                        cout << "+             VAPORWAVE           +" <<endl;
-                        cout << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+        Add more balance         +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         int Money;
                         cout << "Enter your Number: ";
@@ -302,9 +321,10 @@ int main() {
                 break;
             }
         } else if (choose == 3) {
-            cout << "+---------------------------------+" <<endl;
-            cout << "+             VAPORWAVE           +" <<endl;
-            cout << "+---------------------------------+" <<endl;
+            cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+            cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+            cout << "\t\t\t\t" << "+             Register            +" <<endl;
+            cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
             cout << endl;
             cout << "Enter username: ";
             cin >> username;
