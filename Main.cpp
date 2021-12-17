@@ -186,15 +186,17 @@ int main() {
                     } else if (choose == 4) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
-                        cout << "\t\t\t\t" << "+    Remove Game from databas     +" <<endl;
+                        cout << "\t\t\t\t" << "+    Remove Game from database    +" <<endl;
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         string _Name_game;
+                        db_Game.Show_QLK();
                         cout << "Which game do you want to remove: ";
                         cin >> _Name_game;
                         int idx_g = db_Game.search(_Name_game);
                         Game obj_g = db_Game.Return_object(idx_g);
                         db_Game.deleteGameDB(obj_g, idx_g, GameDBPath);
+                        db_Game.Show_QLK();
                         system("pause");
                         system("cls");
                     } else if (choose == 5) {
@@ -318,7 +320,7 @@ int main() {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
                         cout << endl;
                         int Money;
-                        cout << "Enter your Number: ";
+                        cout << "Wasted money on video games. So tell me how much this time ";
                         cin >> Money;
                         User.addBalance(Money);
                         system("pause");
@@ -335,10 +337,10 @@ int main() {
             cout << "\t\t\t\t" << "+             Register            +" <<endl;
             cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
             cout << endl;
-            cout << "Enter username: ";
+            cout << "Tell me your username. Better not be some edgy names ";
             cin >> username;
             cout << endl;
-            cout << "Enter password: ";
+            cout << "Tell me your password. Don't worry, this will be our little secret ";
             cin >> password;
             db_User.signUp(username, password, UserDBPath);
             system("cls");

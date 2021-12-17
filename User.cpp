@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
-
+#include <unistd.h>
 using namespace std;
 
 User::User() {
@@ -298,7 +298,7 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
     while (true) {
         if (this->checkAccount(Input_Account) == false) {
             User Person(Input_Account, Input_Password);
-            cout << "Enter your age: ";
+            cout << "Waiiittttt a minute how old are you: ";
             int Input_Age;
             cin >> Input_Age;
             Person.setAge(Input_Age);
@@ -321,13 +321,14 @@ void ListUser::signUp(string Input_Account, string Input_Password, string UserDB
             userdb.close();
             break;
         } else {
-            cout << "Username already exists. Please use another name!!!" << endl;
+            cout << "This name's already taken. Try zZ_DaRkF1Am3mAsTeR69420_Zz" << endl;
+            sleep(2);
             break;
         }
     }
 }
 void ListUser::showListUser(QLK &DB) {
-    cout << this->List_user_len << endl;
+    cout << "Number of User: " << this->List_user_len << endl;
     for (int i = 0; i < this->List_user_len; i++) {
         (*(this->List_User + i)).showUser(DB);
     }
