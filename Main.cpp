@@ -84,7 +84,6 @@ int main() {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
-                        char x = getchar();
                         system("cls");
                         break;
                     }
@@ -107,7 +106,8 @@ int main() {
                     cout << "------->" << "3. Update Game Info" << endl;
                     cout << "------->" << "4. Remove Game From Database" << endl;
                     cout << "------->" << "5. Show User List" << endl;
-                    cout << "------->" << "6. Back" << endl;
+                    cout << "------->" << "6. Delete User" << endl;
+                    cout << "------->" << "7. Back" << endl;
                     cout << endl;
                     cout << "Pick your poison: ";
                     cin >> choose;
@@ -123,7 +123,6 @@ int main() {
                         db_Game.Sort(choice);
                         db_Game.Show_QLK();
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 2) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -155,7 +154,6 @@ int main() {
                         Game Obj_g(_Name_game, _Genre_game, _Developer_game, _ReleaseYear_game, _Price_game, _NumberS_game, _Rating_game);
                         db_Game.addGameDB(Obj_g, GameDBPath);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -188,7 +186,6 @@ int main() {
                         int idx_g = db_Game.search(_Name_game);
                         db_Game.Update_data(Obj_g, idx_g);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 4) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -203,7 +200,6 @@ int main() {
                         Game obj_g = db_Game.Return_object(idx_g);
                         db_Game.deleteGameDB(obj_g, idx_g, GameDBPath);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 5) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -213,9 +209,21 @@ int main() {
                         cout << endl;
                         db_User.showListUser(db_Game);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 6) {
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << "\t\t\t\t" << "+            VAPORWAVE            +" <<endl;
+                        cout << "\t\t\t\t" << "+           Delete User           +" <<endl;
+                        cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
+                        cout << endl;
+                        cout << "Enter Account you want to delete: ";
+                        string ND;
+                        cin >> ND;
+                        int User_idx = db_User.searchUser(ND);
+                        db_User.deleteAccount(ND, User_idx, UserDBPath);
+                        cout << "Success....";
+                        system("pause > nul");
+                    } else if (choose == 7) {
                         break;
                     }
                 }
@@ -234,7 +242,6 @@ int main() {
                         cout << endl;
                         cout << "Success!" << endl;
                         system("pause");
-                        char x = getchar();
                         system("cls");
                         break;
                     } else if (db_User.signIn(username, password) == false) {
@@ -275,7 +282,6 @@ int main() {
                         cout << endl;
                         User.showUser(db_Game);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 2) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -292,7 +298,6 @@ int main() {
                         db_Game.updateStock(true, 0, idx);
                         User.showUser(db_Game);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 3) {
                         cout << "\t\t\t\t" << "+---------------------------------+" <<endl;
@@ -305,7 +310,6 @@ int main() {
                         cin >> Money;
                         User.addBalance(Money);
                         system("pause");
-                        char x = getchar();
                         system("cls");
                     } else if (choose == 4) {
                         break;
