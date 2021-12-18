@@ -248,8 +248,8 @@ int main() {
                     } else if (db_User.signIn(username, password) == false) {
                         cout << "Login authentication failed. Would you like to retry? ";
                         cin >> choice;
+                        system("cls");
                         if (choice == "n" || choice == "N" || choice == "no" || choice == "No" || choice == "NO") {
-                            system("cls");
                             break;
                         }
                     }
@@ -327,7 +327,8 @@ int main() {
                         cout << "Wasting money on video games i see. So tell me how much this time: ";
                         cin >> Money;
                         User.addBalance(Money);
-                        sleep(2);
+                        cout << endl << "Should've bought some pineapple pizza with all that money";
+                        sleep(3);
                         system("cls");
                     } else if (choose == 4) {
                         break;
