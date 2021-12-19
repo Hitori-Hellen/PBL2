@@ -195,6 +195,22 @@ void User::buy(Game GameObj) {
         GameDBFile.close();
         remove("GameDB.txt");
         rename("temp1.txt", "GameDB.txt");
+        cout << "Casting magic spells in the background please wait (*^_^*)" << endl;
+        cout << endl;
+        streamsize prev_precision = cout.precision();
+        for (double i = 0; i < 10; i++) {
+            cout << "\33[2K\r"
+                << "[" << string(6 * i, char(219)) << string(6 * (10 - i), '-') << "]    " << 10 * i << "%  |  " << showpoint << setprecision(2) << "ETA: 00:00:0" << 5 - 0.5 * i;
+            usleep(500000);
+        }
+        cout << "\33[2K\r"
+            << "[" << string(60, char(219)) << "]    "
+            << "100%  |  "
+            << "Completed";
+        usleep(500000);
+        cout << noshowpoint << setprecision(prev_precision);
+        cout << endl;
+        cout << endl;
     }
 }
 void User::showUser(QLK &DB) {
